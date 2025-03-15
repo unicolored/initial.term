@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
+import {ref, createRef} from 'lit/directives/ref.js';
 import {styles} from './lib/styles/styles.js';
 
 interface Message {
@@ -16,9 +17,13 @@ interface Plugin {
 export class InitialSh extends LitElement {
   static override styles = styles;
 
+  theInput = createRef();
+
   @property({type: String}) banner = 'initial v1.0 - Type "init" or "help"';
   @property({type: String}) apiUrl = '';
   @property({type: Boolean, reflect: true}) private open = false;
+  @property({type: Boolean, reflect: true}) private static = false;
+  @property({type: Boolean, reflect: false}) private sounds = false;
   @state() private messages: string[] = [];
   @state() private conversation: Message[] = [];
   private promptSign = '::'; // >>
@@ -47,10 +52,12 @@ export class InitialSh extends LitElement {
 
   constructor() {
     super();
-    this.initSounds();
+    console.log('init!');
     this.loadPlugins();
     // Add keyboard listener in constructor
-    document.addEventListener('keydown', this.handleKeydown.bind(this));
+    if (!this.static) {
+      document.addEventListener('keyup', this.handleKeydown.bind(this));
+    }
 
     // Set banner with browser and site info
     const browser = this.getBrowserName();
@@ -60,25 +67,38 @@ export class InitialSh extends LitElement {
 
   override disconnectedCallback() {
     // Clean up listener when element’s removed
-    document.removeEventListener('keydown', this.handleKeydown.bind(this));
+    document.removeEventListener('keyup', this.handleKeydown.bind(this));
     super.disconnectedCallback();
   }
 
   override render() {
+    if (this.sounds) {
+      this.initSounds();
+    }
+    if (this.static) {
+      this.show();
+    }
     return html`
-      <div class="console-content" @click=${this.handleClick}>
-        <div class="output">
-          <div class="banner">${this.banner}</div>
-          ${this.messages.map(
-            (msg) =>
-              html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
-                ${msg}
-              </p>`
-          )}
-        </div>
-        <div class="input-line">
-          <span class="prompt">${this.promptSign}</span>
-          <input @keydown=${this.handleInput} placeholder="" autofocus />
+      <div class="wrapper">
+        <div class="console-content" @click=${this.handleClick}>
+          <div class="output">
+            <div class="banner">${this.banner}</div>
+            ${this.messages.map(
+              (msg) =>
+                html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
+                  ${msg}
+                </p>`
+            )}
+          </div>
+          <div class="input-line">
+            <span class="prompt">${this.promptSign}</span>
+            <input
+              ${ref(this.theInput)}
+              @keydown=${this.handleInput}
+              placeholder=""
+              autofocus
+            />
+          </div>
         </div>
       </div>
     `;
@@ -316,7 +336,7 @@ export class InitialSh extends LitElement {
   }
 
   private _focusInput() {
-    const input = this.shadowRoot?.querySelector('input');
+    const input = this.theInput.value as HTMLInputElement;
     if (input) {
       input.focus();
     }

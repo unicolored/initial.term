@@ -19,20 +19,33 @@ export const styles = css`
   :host([open]) {
     top: 0;
   }
+  :host([static]) {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    display: block;
+    overflow-y: auto;
+    background: transparent;
+  }
   p {
     margin: 0 0 4px 0;
   }
-  .console-content {
+  .wrapper {
+    display: flex;
+    overflow-y: auto;
+    align-items: stretch;
     height: 100%;
-    padding: 15px;
+  }
+  .console-content {
+    margin: 15px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     font-family: 'Courier New', monospace;
     color: #00ff00;
     color: white;
-    background: #1a1a1a;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    overflow-y: auto;
+    // background: #1a1a1a;
   }
   .banner {
     color: #ffff00;

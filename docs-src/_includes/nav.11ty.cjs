@@ -7,6 +7,9 @@ module.exports = function ({page}) {
 <!--  <a href="${relative(page.url, '/examples/')}">Examples</a>-->
 <!--  <a href="${relative(page.url, '/api/')}">API</a>-->
 <!--  <a href="${relative(page.url, '/install/')}">Install</a>-->
+
+<button onclick="document.querySelector('initial-sh').show()">Open the console</button>
+
 </nav>
 `;
 };

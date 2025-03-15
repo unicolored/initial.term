@@ -5,41 +5,18 @@ title: <initial-sh> ⌲ Home
 
 ## Usage
 
-Drop the `<initial-sh>` tag into your webpage with the script.
+Drop the `<initial-sh>` tag into your webpage with the script add the script to your page. Invoke the method show() of the initial-sh element.
+To close the console: press Escape, or type `exit`.
 
 ```html
 <body>
 ...
+<button onclick="document.querySelector('initial-sh').show()">Open the console</button>
 
-<initial-sh></initial-sh>
+<initial-sh sounds="true" mode="quake"></initial-sh>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/initial-sh/dist/initial-sh.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"></script>
 </body>
 ```
 
-  <div>
-
 <initial-sh></initial-sh>
-
-  </div>
-</section>
-
-## Configure with attributes
-
-<section class="columns">
-  <div>
-
-`<initial-sh>` can be configured with attributed in plain HTML.
-
-```html
-<initial-sh></initial-sh>
-```
-
-  </div>
-  <div>
-
-<initial-sh name="HTML"></initial-sh>
-
-  </div>
-</section>
-
