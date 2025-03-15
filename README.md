@@ -23,14 +23,16 @@ Drop the `<initial-sh>` tag into your webpage.
 
 Click a button to show it—watch it slide down from the top!
 
-Type commands:
-
+Type commands at the `>>` prompt:
 - `init`: Welcome message.
 - `help`: List of available commands.
+- `clear`: Clear the console output.
+- `exit` or press Esc: Close the console.
+- `cookie`: List names of cookies set by the current website.
 - `lighthouse`: Mock audit with typed-out scores.
 - `seo`: Mock SEO check with typed-out tips.
 - `feedback`: Type your thoughts, end with “done.”
-- `exit` or press Esc: Close the console.
+- Unknown commands show: `ish: command not found: [input]`.
 
 ### Optional: Connect to initial.sh
 
