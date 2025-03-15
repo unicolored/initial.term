@@ -1,6 +1,11 @@
-# Initial Term
+# Initial Shell
 
-Welcome to Initial Term—the Quake-style console for webmasters worldwide! Embed it in your site with a single `<script>` tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to `initial.sh` for a broader ecosystem of plugins.
+  <a href="https://www.npmjs.com/initial-sh">
+    <img src="https://img.shields.io/npm/v/initial-sh
+" />
+  </a>
+
+Welcome to Initial Shell—the Quake-styl`ish` console for webmasters worldwide! Embed it in your site with a single `<script>` tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to `initial.sh` for a broader ecosystem of plugins.
 
 This repository contains the source for the `@initial.sh/initial` npm package—your MVP console component.
 
@@ -24,6 +29,7 @@ Drop the `<initial-sh>` tag into your webpage.
 Click a button to show it—watch it slide down from the top!
 
 Type commands at the `>>` prompt:
+
 - `init`: Welcome message.
 - `help`: List of available commands.
 - `clear`: Clear the console output.

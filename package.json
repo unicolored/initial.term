@@ -2,10 +2,16 @@
   "name": "initial-sh",
   "version": "0.2.0",
   "description": "The Initial Console for webmasters",
-  "main": "initial-sh.js",
+  "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
-  "type": "module",
   "types": "initial-sh.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/chessfield.js",
+      "require": "./dist/chessfield.bundled.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
@@ -32,6 +38,37 @@
     "test:prod:watch": "MODE=prod wtr --watch",
     "checksize": "rollup -c ; cat initial.bundled.js | gzip -9 | wc -c ; rm initial.bundled.js"
   },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "@custom-elements-manifest/analyzer": "^0.6.3",
+    "@open-wc/testing": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "@web/dev-server": "^0.1.31",
+    "@web/dev-server-legacy": "^1.0.0",
+    "@web/rollup-plugin-copy": "^0.5.1",
+    "@web/rollup-plugin-html": "^2.3.0",
+    "@web/test-runner": "^0.15.0",
+    "@web/test-runner-playwright": "^0.9.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
+    "eslint": "^8.15.0",
+    "lit-analyzer": "^1.2.1",
+    "postcss": "^8.5.3",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^4.35.0",
+    "rollup-plugin-minify-html-literals": "^1.2.6",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-summary": "^2.0.1",
+    "typescript": "~5.5.0"
+  },
   "keywords": [
     "web-components",
     "lit-element",
@@ -40,33 +77,11 @@
   ],
   "author": "Gilles Hoarau (https://github.com/unicolored)",
   "license": "MIT",
-  "dependencies": {
-    "lit": "^3.2.0",
-    "postcss": "^8.5.3"
-  },
-  "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
-    "@custom-elements-manifest/analyzer": "^0.6.3",
-    "@open-wc/testing": "^4.0.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.7",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
-    "@web/dev-server": "^0.1.31",
-    "@web/dev-server-legacy": "^1.0.0",
-    "@web/test-runner": "^0.15.0",
-    "@web/test-runner-playwright": "^0.9.0",
-    "@webcomponents/webcomponentsjs": "^2.8.0",
-    "eslint": "^8.15.0",
-    "lit-analyzer": "^1.2.1",
-    "prettier": "^2.6.2",
-    "rimraf": "^3.0.2",
-    "rollup": "^4.18.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-summary": "^2.0.1",
-    "typescript": "~5.5.0"
-  },
+  "files": [
+    "*.js",
+    "*.ts",
+    "*.map"
+  ],
+  "repository": "https://github.com/unicolored/initial-sh",
   "customElements": "custom-elements.json"
 }
