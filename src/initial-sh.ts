@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
-import {styles} from './lib/styles/styles'; // Import the CSS
+import {styles} from './lib/styles/styles.js';
 
 interface Message {
   role: 'user' | 'developer';
@@ -325,7 +325,7 @@ export class InitialSh extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'initial-sh': InitialSh; // Updated to match 'initial-sh'
+    'initial-sh': InitialSh;
   }
 }
 

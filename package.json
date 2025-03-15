@@ -5,6 +5,7 @@
   "main": "initial-sh.js",
   "module": "initial-sh.js",
   "type": "module",
+  "types": "initial-sh.d.ts",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
