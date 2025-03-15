@@ -16,12 +16,12 @@ module.exports = function (data) {
     <link rel="stylesheet" href="${relative(page.url, '/docs.css')}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link href="${relative(page.url, '/prism-okaidia.css')}" rel="stylesheet" />
-<!--    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>-->
-<!--    <script src="/node_modules/lit/polyfill-support.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/gh/unicolored/initial.term@0.2.0/initial-sh.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/initial.sh@0.2"></script>
-    
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="/node_modules/lit/polyfill-support.js"></script>
+    <script type="module" src="${relative(
+      page.url,
+      '/../initial-sh.bundled.js'
+    )}"></script>
   </head>
   <body>
     ${header()}
@@ -32,8 +32,6 @@ module.exports = function (data) {
       </main>
     </div>
     ${footer()}
-    
-    <initial-sh></initial-sh>
   </body>
 </html>`;
 };
