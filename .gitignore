@@ -1,11 +1,12 @@
+/var/
 /node_modules/
 /lib/
 /test/
 custom-elements.json
 # top level source
-my-element.js
-my-element.js.map
-my-element.d.ts
-my-element.d.ts.map
+initial-sh.js
+initial-sh.js.map
+initial-sh.d.ts
+initial-sh.d.ts.map
 # only generated for size check
-my-element.bundled.js
+initial-sh.bundled.js
