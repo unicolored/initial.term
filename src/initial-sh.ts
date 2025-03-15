@@ -21,7 +21,7 @@ export class InitialSh extends LitElement {
   @property({type: Boolean, reflect: true}) private open = false;
   @state() private messages: string[] = [];
   @state() private conversation: Message[] = [];
-  private promptSign: string = '>>'; // ::
+  private promptSign = '::'; // >>
   private audioContext: AudioContext | null = null;
   private coreCommands: Record<string, () => void> = {
     init: () =>
