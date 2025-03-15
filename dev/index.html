@@ -18,10 +18,14 @@
     </style>
   </head>
   <body>
-    <initial-sh></initial-sh>
+    <initial-sh id="console1" sounds></initial-sh>
+
+    <div class="my-console-container" style="height: 337px; background: blue">
+      <initial-sh id="console2" static></initial-sh>
+    </div>
 
     <p>
-      <button onclick="document.querySelector('initial-sh').show()">
+      <button onclick="document.getElementById('console1').show()">
         Launch initial
       </button>
     </p>

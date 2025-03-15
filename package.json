@@ -1,6 +1,6 @@
 {
   "name": "initial-sh",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
@@ -24,7 +24,7 @@
     "docs:clean": "rimraf docs",
     "docs:gen": "eleventy --config=.eleventy.cjs",
     "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
-    "docs:build": "rollup -c --file docs/initial.bundled.js",
+    "docs:build": "rollup -c --file docs/initial-sh.bundled.js",
     "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
     "docs:serve": "wds --root-dir=docs --node-resolve --watch",
     "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
