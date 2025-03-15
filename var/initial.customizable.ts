@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import {LitElement, html, css} from 'lit';
+import {customElement, property, state} from 'lit/decorators.js';
 
 interface Message {
   role: 'user' | 'developer';
@@ -68,15 +68,22 @@ export class Initial extends LitElement {
     }
   `;
 
-  @property({ type: String }) banner = 'initial v1.0 - Type "init" or "help"';
-  @property({ type: String }) apiUrl = '';
+  @property({type: String}) banner = 'initial v1.0 - Type "init" or "help"';
+  @property({type: String}) apiUrl = '';
   @state() private open = false;
   @state() private messages: string[] = [];
   @state() private conversation: Message[] = [];
   private audioContext: AudioContext | null = null;
   private coreCommands: Record<string, () => void> = {
     init: () => this.addOutput(`Welcome to initial! Type "help" fer commands.`),
-    help: () => this.addOutput(`Commands: init, help, clear, exit${Object.keys(this.pluginCommands).length ? ', ' + Object.keys(this.pluginCommands).join(', ') : ''}`),
+    help: () =>
+      this.addOutput(
+        `Commands: init, help, clear, exit${
+          Object.keys(this.pluginCommands).length
+            ? ', ' + Object.keys(this.pluginCommands).join(', ')
+            : ''
+        }`
+      ),
     clear: () => {
       this.messages = [];
       this.conversation = [];
@@ -96,18 +103,28 @@ export class Initial extends LitElement {
       <div class="console-content">
         <div class="banner">${this.banner}</div>
         <div class="output">
-          ${this.messages.map(msg => html`<p class=${msg.startsWith('Error') ? 'error' : ''}>${msg}</p>`)}
+          ${this.messages.map(
+            (msg) =>
+              html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
+                ${msg}
+              </p>`
+          )}
         </div>
         <div class="input-line">
           <span class="prompt">></span>
-          <input @keypress=${this.handleInput} placeholder="Type yer command..." autofocus />
+          <input
+            @keypress=${this.handleInput}
+            placeholder="Type yer command..."
+            autofocus
+          />
         </div>
       </div>
     `;
   }
 
   private initSounds() {
-    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    this.audioContext = new (window.AudioContext ||
+      window.webkitAudioContext)();
   }
 
   private playSound(frequency: number, type: OscillatorType, duration: number) {
@@ -122,9 +139,13 @@ export class Initial extends LitElement {
 
   private async loadPlugins() {
     const defaultPlugins: Plugin[] = [
-      { name: 'ping', execute: (c) => c.addOutput('Pong!') },
-      { name: 'time', execute: (c) => c.addOutput(`Time be ${new Date().toLocaleTimeString()}!`) },
-      { name: 'feedback', execute: (c) => c.startFeedback() },
+      {name: 'ping', execute: (c) => c.addOutput('Pong!')},
+      {
+        name: 'time',
+        execute: (c) =>
+          c.addOutput(`Time be ${new Date().toLocaleTimeString()}!`),
+      },
+      {name: 'feedback', execute: (c) => c.startFeedback()},
     ];
     this.registerPlugins(defaultPlugins);
 
@@ -132,7 +153,7 @@ export class Initial extends LitElement {
       try {
         const response = await fetch(`${this.apiUrl}/plugins`, {
           method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
         });
         const plugins: Plugin[] = await response.json();
         this.registerPlugins(plugins);
@@ -143,7 +164,7 @@ export class Initial extends LitElement {
   }
 
   private registerPlugins(plugins: Plugin[]) {
-    plugins.forEach(plugin => {
+    plugins.forEach((plugin) => {
       this.pluginCommands[plugin.name] = plugin.execute;
     });
   }
@@ -171,20 +192,20 @@ export class Initial extends LitElement {
     } else if (this.pluginCommands[cmd]) {
       this.pluginCommands[cmd](this);
     } else {
-      this.conversation.push({ role: 'user', content: command });
+      this.conversation.push({role: 'user', content: command});
       this.emitConversation();
     }
   }
 
   private async emitConversation() {
-    const convo = { model: 'gpt-4o', messages: [...this.conversation] };
+    const convo = {model: 'gpt-4o', messages: [...this.conversation]};
     let response: string;
 
     if (this.apiUrl) {
       try {
         const res = await fetch(`${this.apiUrl}/convo`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(convo),
         });
         response = (await res.json()).response || 'Arr, server be silent!';
@@ -192,10 +213,12 @@ export class Initial extends LitElement {
         response = 'Error: Couldn’t reach server!';
       }
     } else {
-      response = this.fakeResponse(convo.messages[convo.messages.length - 1].content);
+      response = this.fakeResponse(
+        convo.messages[convo.messages.length - 1].content
+      );
     }
 
-    this.conversation.push({ role: 'developer', content: response });
+    this.conversation.push({role: 'developer', content: response});
     this.addOutput(response);
     console.log(JSON.stringify(convo, null, 2));
   }
@@ -210,7 +233,8 @@ export class Initial extends LitElement {
     this.addOutput('Enter yer feedback (type "done" to submit):');
     this.conversation = [];
     this.pluginCommands['temp-feedback'] = () => {
-      const lastInput = this.conversation[this.conversation.length - 1]?.content;
+      const lastInput =
+        this.conversation[this.conversation.length - 1]?.content;
       if (lastInput === 'done') {
         this.submitFeedback();
         delete this.pluginCommands['temp-feedback'];
@@ -219,13 +243,13 @@ export class Initial extends LitElement {
   }
 
   private async submitFeedback() {
-    const feedback = this.conversation.map(m => m.content).join('\n');
+    const feedback = this.conversation.map((m) => m.content).join('\n');
     if (this.apiUrl) {
       try {
         await fetch(`${this.apiUrl}/feedback`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ feedback }),
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({feedback}),
         });
         this.addOutput('Feedback sent! Thanks, matey!');
       } catch (e) {
@@ -250,7 +274,10 @@ export class Initial extends LitElement {
 declare global {
   interface Window {
     Initial: {
-      registerPlugin: (name: string, execute: (console: Initial) => void) => void;
+      registerPlugin: (
+        name: string,
+        execute: (console: Initial) => void
+      ) => void;
     };
   }
 }

@@ -24,6 +24,7 @@ Drop the `<initial-sh>` tag into your webpage.
 Click a button to show it—watch it slide down from the top!
 
 Type commands:
+
 - `init`: Welcome message.
 - `help`: List of available commands.
 - `lighthouse`: Mock audit with typed-out scores.
