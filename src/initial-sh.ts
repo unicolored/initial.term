@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
-import {styles} from './styles'; // Import the CSS
+import {styles} from './lib/styles/styles'; // Import the CSS
 
 interface Message {
   role: 'user' | 'developer';
@@ -21,13 +21,14 @@ export class InitialSh extends LitElement {
   @property({type: Boolean, reflect: true}) private open = false;
   @state() private messages: string[] = [];
   @state() private conversation: Message[] = [];
+  private promptSign: string = '>>'; // ::
   private audioContext: AudioContext | null = null;
   private coreCommands: Record<string, () => void> = {
     init: () =>
       this._addOutput(`Welcome to initial! Type "help" fer commands.`),
     help: () =>
       this._addOutput(
-        `Commands: init, help, clear, exit, lighthouse, seo, feedback${
+        `Commands: init, help, clear, exit, cookie, lighthouse, seo, feedback${
           Object.keys(this.pluginCommands).length
             ? ', ' + Object.keys(this.pluginCommands).join(', ')
             : ''
@@ -38,6 +39,7 @@ export class InitialSh extends LitElement {
       this.conversation = [];
     },
     exit: () => this.close(),
+    cookie: () => this._listCookies(),
     lighthouse: () => this._runLighthouse(),
     seo: () => this._checkSEO(),
   };
@@ -49,6 +51,11 @@ export class InitialSh extends LitElement {
     this.loadPlugins();
     // Add keyboard listener in constructor
     document.addEventListener('keydown', this.handleKeydown.bind(this));
+
+    // Set banner with browser and site info
+    const browser = this.getBrowserName();
+    const site = window.location.hostname || 'unknown site';
+    this.banner = `initial v1.0 @ ${site} on ${browser} - Type "init" or "help"`;
   }
 
   override disconnectedCallback() {
@@ -59,7 +66,7 @@ export class InitialSh extends LitElement {
 
   override render() {
     return html`
-      <div class="console-content">
+      <div class="console-content" @click=${this.handleClick}>
         <div class="output">
           <div class="banner">${this.banner}</div>
           ${this.messages.map(
@@ -70,12 +77,8 @@ export class InitialSh extends LitElement {
           )}
         </div>
         <div class="input-line">
-          <span class="prompt">></span>
-          <input
-            @keypress=${this.handleInput}
-            placeholder="Type yer command..."
-            autofocus
-          />
+          <span class="prompt">${this.promptSign}</span>
+          <input @keydown=${this.handleInput} placeholder="" autofocus />
         </div>
       </div>
     `;
@@ -129,22 +132,33 @@ export class InitialSh extends LitElement {
 
   private handleInput(e: KeyboardEvent) {
     const input = (e.target as HTMLInputElement).value.trim();
-    if (e.key === 'Enter' && input) {
-      this._addOutput(`> ${input}`, false, false);
-      this._processCommand(input);
-      (e.target as HTMLInputElement).value = '';
+
+    if (e.key === 'Enter') {
+      if (!input) {
+        this.playSound(100, 'sine', 0.01);
+      } else {
+        this._addOutput(`${this.promptSign} ${input}`, false, false);
+        this._processCommand(input);
+        (e.target as HTMLInputElement).value = '';
+      }
     } else if (e.key === 'Escape') {
       this.close();
     }
   }
 
   private handleKeydown(e: KeyboardEvent) {
-    if (e.key === '2' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+    if (e.key === 'Help' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
       // Plain '2' key
       if (!this.open) {
         this.show();
+      } else {
+        this.close();
       }
     }
+  }
+
+  private handleClick() {
+    this._focusInput();
   }
 
   private async _addOutput(text: string, isError = false, typeEffect = true) {
@@ -162,7 +176,7 @@ export class InitialSh extends LitElement {
           typedText,
           ...this.messages.slice(index + 1),
         ];
-        await new Promise((resolve) => setTimeout(resolve, 30));
+        await new Promise((resolve) => setTimeout(resolve, 10));
         this.requestUpdate();
       }
 
@@ -185,7 +199,7 @@ export class InitialSh extends LitElement {
   }
 
   private async _emitConversation() {
-    const convo = {model: 'gpt-4o', messages: [...this.conversation]};
+    const convo = {model: 'initial-shell', messages: [...this.conversation]};
     let response: string;
 
     if (this.apiUrl) {
@@ -212,7 +226,7 @@ export class InitialSh extends LitElement {
   private _fakeResponse(input: string): string {
     return input === 'Are semicolons optional in JavaScript?'
       ? 'Aye, mostly optional thanks to ASI, but watch fer bugs!'
-      : 'Arr, no answer fer that yet! Try a command.';
+      : `ish: command not found: ${input}`;
   }
 
   private async _runLighthouse() {
@@ -262,19 +276,49 @@ export class InitialSh extends LitElement {
     }
   }
 
+  private _listCookies() {
+    const cookies = document.cookie
+      .split(';')
+      .map((cookie) => cookie.trim().split('=')[0]);
+    if (cookies.length === 0 || (cookies.length === 1 && cookies[0] === '')) {
+      this._addOutput('No cookies found on this site.');
+    } else {
+      this._addOutput('Cookies found:');
+      cookies.forEach((name) => {
+        if (name) this._addOutput(`- ${name}`);
+      });
+    }
+  }
+
+  private getBrowserName(): string {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes('firefox')) return 'Firefox';
+    if (ua.includes('chrome')) return 'Chrome';
+    if (ua.includes('safari')) return 'Safari';
+    if (ua.includes('edge')) return 'Edge';
+    if (ua.includes('opera') || ua.includes('opr')) return 'Opera';
+    return 'Unknown Browser';
+  }
+
   show() {
-    console.log('open', this.open);
     if (!this.open) {
       this.open = true;
-      this.playSound(400, 'square', 0.1);
+      this._focusInput();
+      this.playSound(900, 'triangle', 0.08);
     }
-    console.log('open', this.open);
   }
 
   close() {
     if (this.open) {
       this.open = false;
-      this.playSound(300, 'square', 0.1);
+      this.playSound(500, 'sine', 0.05);
+    }
+  }
+
+  private _focusInput() {
+    const input = this.shadowRoot?.querySelector('input');
+    if (input) {
+      input.focus();
     }
   }
 }
