@@ -2,11 +2,11 @@
 /node_modules/
 /lib/
 /test/
-custom-elements.json
+/custom-elements.json
 # top level source
-initial-sh.js
-initial-sh.js.map
-initial-sh.d.ts
-initial-sh.d.ts.map
+/initial-sh.js
+/initial-sh.js.map
+/initial-sh.d.ts
+/initial-sh.d.ts.map
 # only generated for size check
-initial-sh.bundled.js
+/initial-sh.bundled.js

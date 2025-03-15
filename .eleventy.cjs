@@ -24,5 +24,5 @@ module.exports = async function (eleventyConfig) {
 };
 
 module.exports.config = {
-  pathPrefix: '/initial-term/',
+  pathPrefix: '/initial.term/',
 };
