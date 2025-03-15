@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><initial-sh> ⌲ Home</title>
-    <base href="/">
+    <base href="/initial.term/">
     <link rel="stylesheet" href="docs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
-    <link href="prism-okaidia.css" rel="stylesheet" />
-    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="/node_modules/lit/polyfill-support.js"></script>
+    <link href="prism-okaidia.css" rel="stylesheet">
+    <script src="/initial.term/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="/initial.term/node_modules/lit/polyfill-support.js"></script>
     <script type="module" src="initial-sh.bundled.js"></script>
   </head>
   <body>
@@ -35,7 +35,7 @@
 Invoke the method show() of the initial-sh element when trigger an event, like a click on a button.
 By default, you can also press the <strong><code>Help</code></strong> key on your keyboard (= <strong>Insert</strong> on macos).
 To close the console: press Escape, or type <strong><code>exit</code></strong>.</p>
-<p><initial-sh id="console1" sounds></initial-sh>
+<p><initial-sh id="console1" sounds=""></initial-sh>
 <button onclick="document.getElementById('console1').show()">Open the console</button></p>
 <pre class="language-html"><code class="language-html"><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>console1<span class="token punctuation">"</span></span> <span class="token attr-name">sounds</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>...<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'console1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Open the console<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">sounds</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 <h2>Static mode</h2>
@@ -43,7 +43,7 @@ To close the console: press Escape, or type <strong><code>exit</code></strong>.<
 You will pass <code>static</code> as an attribute.
 In this case, the console will be automatically opened.</p>
 <div class="my-custom-container" style="height: 337px; background: darkblue">
-  <initial-sh id="console2" static></initial-sh>
+  <initial-sh id="console2" static=""></initial-sh>
 </div>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my-custom-container<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 337px<span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> darkblue</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>console2<span class="token punctuation">"</span></span> <span class="token attr-name">static</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 
