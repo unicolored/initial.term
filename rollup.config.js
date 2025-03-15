@@ -1,19 +1,14 @@
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
 import summary from 'rollup-plugin-summary';
 import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
 export default {
-  input: 'my-element.js',
+  input: 'initial-sh.js',
   output: {
-    file: 'my-element.bundled.js',
-    format: 'esm',
+    file: 'initial-sh.bundled.js',
+    format: 'iife',
+    name: 'Initial',
   },
   onwarn(warning) {
     if (warning.code !== 'THIS_IS_UNDEFINED') {
