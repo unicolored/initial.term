@@ -1,5 +1,6 @@
-import {LitElement, html, css} from 'lit';
+import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
+import {styles} from './styles'; // Import the CSS
 
 interface Message {
   role: 'user' | 'developer';
@@ -11,62 +12,9 @@ interface Plugin {
   execute: (console: InitialSh) => void;
 }
 
-@customElement('initial-sh') // Changed from 'initial-sh' to 'initial'
+@customElement('initial-sh')
 export class InitialSh extends LitElement {
-  static override styles = css`
-    :host {
-      position: fixed;
-      top: -50%;
-      left: 0;
-      width: 100vw;
-      height: 50vh;
-      background: rgba(0, 0, 0, 0.9);
-      transition: top 0.3s ease-in-out;
-      z-index: 1000;
-      display: flex;
-    }
-    :host([open]) {
-      top: 0;
-    }
-    .console-content {
-      height: 100%;
-      padding: 15px;
-      font-family: 'Courier New', monospace;
-      color: #00ff00;
-      background: #1a1a1a;
-      overflow-y: auto;
-    }
-    .banner {
-      color: #ffff00;
-      margin-bottom: 10px;
-    }
-    .output {
-      flex-grow: 1;
-      margin-bottom: 10px;
-      overflow-y: auto;
-    }
-    .input-line {
-      display: flex;
-      align-items: center;
-    }
-    .prompt {
-      margin-right: 5px;
-    }
-    input {
-      background: red;
-      border: none;
-      color: #00ff00;
-      font-family: inherit;
-      width: 100%;
-      outline: none;
-    }
-    input::placeholder {
-      color: #008000;
-    }
-    .error {
-      color: #ff4040;
-    }
-  `;
+  static override styles = styles;
 
   @property({type: String}) banner = 'initial v1.0 - Type "init" or "help"';
   @property({type: String}) apiUrl = '';
@@ -99,13 +47,21 @@ export class InitialSh extends LitElement {
     super();
     this.initSounds();
     this.loadPlugins();
+    // Add keyboard listener in constructor
+    document.addEventListener('keydown', this.handleKeydown.bind(this));
+  }
+
+  override disconnectedCallback() {
+    // Clean up listener when element’s removed
+    document.removeEventListener('keydown', this.handleKeydown.bind(this));
+    super.disconnectedCallback();
   }
 
   override render() {
     return html`
       <div class="console-content">
-        <div class="banner">${this.banner}</div>
         <div class="output">
+          <div class="banner">${this.banner}</div>
           ${this.messages.map(
             (msg) =>
               html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
@@ -179,6 +135,15 @@ export class InitialSh extends LitElement {
       (e.target as HTMLInputElement).value = '';
     } else if (e.key === 'Escape') {
       this.close();
+    }
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    if (e.key === '2' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+      // Plain '2' key
+      if (!this.open) {
+        this.show();
+      }
     }
   }
 
@@ -316,7 +281,7 @@ export class InitialSh extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    initial: InitialSh;
+    'initial-sh': InitialSh; // Updated to match 'initial-sh'
   }
 }
 
@@ -333,7 +298,7 @@ declare global {
 
 window.Initial = {
   registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-sh') as InitialSh; // Updated to 'initial-sh'
+    const console = document.querySelector('initial-sh') as InitialSh;
     if (console) console.pluginCommands[name] = execute;
   },
 };
