@@ -29,6 +29,5 @@ p {
 
 ```html
 <initial-sh>
-  <p>This is child content</p>
 </initial-sh>
 ```
