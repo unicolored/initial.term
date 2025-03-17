@@ -1,7 +1,7 @@
 ---
 layout: example.11ty.cjs
 title: <initial-sh> ⌲ Examples ⌲ Basic
-tags: example
+tags: console
 name: Basic
 description: A basic example
 ---

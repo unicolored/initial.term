@@ -22,30 +22,49 @@
 </header>
     
 <nav>
-<!--  <a href="">Home</a>-->
-<!--  <a href="examples/">Examples</a>-->
-<!--  <a href="api/">API</a>-->
-<!--  <a href="install/">Install</a>-->
+  <a href=".">Home</a>
+  <a href="console/">Console</a>
+  <a href="integrated/">Integrated</a>
 </nav>
 
     <div id="main-wrapper">
       <main>
-        <h2>Console mode</h2>
-<p>Drop the <strong><code>&lt;initial-sh&gt;</code></strong> tag into your webpage with the script add the script to your page.
-Invoke the method show() of the initial-sh element when trigger an event, like a click on a button.
-By default, you can also press the <strong><code>Help</code></strong> key on your keyboard (= <strong>Insert</strong> on macos).
-To close the console: press Escape, or type <strong><code>exit</code></strong>.</p>
-<p><initial-sh id="console1" sounds=""></initial-sh>
-<button onclick="document.getElementById('console1').show()">Open the console</button></p>
-<pre class="language-html"><code class="language-html"><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>console1<span class="token punctuation">"</span></span> <span class="token attr-name">sounds</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>...<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'console1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>Open the console<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">sounds</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
-<h2>Static mode</h2>
-<p>Another possibility is to display <strong><code>&lt;initial-sh&gt;</code></strong> into a custom container with a minimum of styling.
-You will pass <code>static</code> as an attribute.
-In this case, the console will be automatically opened.</p>
-<div class="my-custom-container" style="height: 337px; background: darkblue">
-  <initial-sh id="console2" static=""></initial-sh>
-</div>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my-custom-container<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 337px<span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> darkblue</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>console2<span class="token punctuation">"</span></span> <span class="token attr-name">static</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+        <h1>Initial Shell</h1>
+  <a href="https://www.npmjs.com/initial-sh">
+    <img src="https://img.shields.io/npm/v/initial-sh">
+  </a>
+<p>Welcome to Initial Shell—the Quake-styl<code>ish</code> console for webmasters worldwide! Embed it in your site with a single <code>&lt;script&gt;</code> tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to <code>initial.sh</code> for a broader ecosystem of plugins.</p>
+<h2>Features</h2>
+<ul>
+<li>Console and static mode UI</li>
+<li>Core Commands: <code>init</code>, <code>help</code>, <code>clear</code>, <code>exit</code>—essential controls.</li>
+<li>Webmaster Tools:
+<ul>
+<li><code>lighthouse</code>: Mock performance and SEO audit with typed-out scores.</li>
+<li><code>seo</code>: Mock SEO check with typed-out results.</li>
+<li><code>feedback</code>: Collect user input, ending with “done.”</li>
+</ul>
+</li>
+<li>Typing Effect: Responses appear character-by-character at 30ms intervals.</li>
+<li>Sounds: Audio cues for opening (400 Hz), closing (300 Hz), and errors (200 Hz).</li>
+<li>Standalone or Connected: Runs locally with mocks or links to <code>initial.sh/marketplace</code> for plugins and data.</li>
+<li>Plugins: Includes <code>ping</code>, <code>time</code>, <code>feedback</code>—extendable via a global register function.</li>
+</ul>
+<h2>Basic commands</h2>
+<p>Type commands at the <code>&gt;&gt;</code> prompt:</p>
+<ul>
+<li><code>init</code>: Welcome message.</li>
+<li><code>help</code>: List of available commands.</li>
+<li><code>clear</code>: Clear the console output.</li>
+<li><code>exit</code> or press Esc: Close the console.</li>
+<li><code>cookie</code>: List names of cookies set by the current website.</li>
+<li><code>lighthouse</code>: Mock audit with typed-out scores.</li>
+<li><code>seo</code>: Mock SEO check with typed-out tips.</li>
+<li><code>feedback</code>: Type your thoughts, end with “done.”</li>
+<li>Unknown commands show: <code>ish: command not found: [input]</code>.</li>
+</ul>
+<h2>More Info</h2>
+<p>Check out <a href="https://initial.sh">initial.sh</a> and <a href="https://github.com/unicolored/initial.term">Github repo</a>.</p>
 
       </main>
     </div>
