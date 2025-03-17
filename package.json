@@ -40,6 +40,7 @@
     "checksize": "rollup -c ; cat initial.bundled.js | gzip -9 | wc -c ; rm initial.bundled.js"
   },
   "dependencies": {
+    "@types/mocha": "^10.0.10",
     "lit": "^3.2.0"
   },
   "devDependencies": {
@@ -61,7 +62,6 @@
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "eslint": "^8.15.0",
     "lit-analyzer": "^1.2.1",
-    "mocha": "11.1.0",
     "postcss": "^8.5.3",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",

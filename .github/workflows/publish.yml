@@ -1,9 +1,9 @@
 name: Publish to npm and Update Docs
 
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
   pull_request:
     branches:
       - main
