@@ -150,8 +150,8 @@ const ht={attribute:!0,type:String,converter:y,reflect:!1,hasChanged:b},rt=(t=ht
           <div class="output">
             <div class="banner">${this.banner}</div>
             ${this.messages.map((t=>F`<p class=${t.startsWith("Error")?"error":""}>
-                  ${t}
-                </p>`))}
+                ${t}
+              </p>`))}
           </div>
           <div class="input-line">
             <span class="prompt">${this.promptSign}</span>
