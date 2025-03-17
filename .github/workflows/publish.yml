@@ -1,14 +1,14 @@
 name: Publish to npm and Update Docs
 
 on:
-#  push:
-#    branches:
-#      - main
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
+#  pull_request:
+#    branches:
+#      - main
+#    types:
+#      - closed
 
 jobs:
   publish-and-update:
