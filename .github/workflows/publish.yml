@@ -1,4 +1,4 @@
-name: Publish to npm and Update Docs
+name: Publish
 
 on:
   push:
