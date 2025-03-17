@@ -1,9 +1,8 @@
 # Initial Shell
 
-  <a href="https://www.npmjs.com/initial-sh">
-    <img src="https://img.shields.io/npm/v/initial-sh
-" />
-  </a>
+[![NPM](https://img.shields.io/npm/v/initial-sh)](https://www.npmjs.com/initial-sh)
+[![Publish](https://github.com/unicolored/initial.term/actions/workflows/publish.yml/badge.svg)](https://github.com/unicolored/initial.term/actions/workflows/publish.yml)
+[![Docs](https://github.com/unicolored/initial.term/actions/workflows/docs.yml/badge.svg)](https://github.com/unicolored/initial.term/actions/workflows/docs.yml)
 
 Welcome to Initial Shell—the Quake-styl`ish` console for webmasters worldwide! Embed it in your site with a single `<script>` tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to `initial.sh` for a broader ecosystem of plugins.
 
