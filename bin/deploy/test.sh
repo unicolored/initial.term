@@ -2,6 +2,8 @@
 
 set -e
 
-yarn check
+npm run lint
+
+npm run check
 
 echo "✅ Tests completed"
