@@ -13,7 +13,7 @@ module.exports = function (data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
-    <base href="/initial.term/">
+    <base href="/">
     <link rel="stylesheet" href="${relative(page.url, '/docs.css')}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link href="${relative(page.url, '/prism-okaidia.css')}" rel="stylesheet" />
@@ -21,7 +21,7 @@ module.exports = function (data) {
     <script src="/node_modules/lit/polyfill-support.js"></script>
     <script type="module" src="${relative(
       page.url,
-      '/../initial-sh.bundled.js'
+      '/initial-sh.bundled.js'
     )}"></script>
   </head>
   <body>
