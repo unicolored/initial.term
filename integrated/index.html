@@ -1,0 +1,51 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><initial-sh> ⌲ Terminal</title>
+    <base href="/initial.term/">
+    <link rel="stylesheet" href="../docs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
+    <link href="../prism-okaidia.css" rel="stylesheet">
+    <script src="/initial.term/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="/initial.term/node_modules/lit/polyfill-support.js"></script>
+    <script type="module" src="../initial-sh.bundled.js"></script>
+  </head>
+  <body>
+    
+<header>
+  <h1>&lt;initial-sh></h1>
+  <h2>A console for webmasters worldwide</h2>
+</header>
+    
+<nav>
+  <a href="../">Home</a>
+  <a href="../console/">Console</a>
+  <a href=".">Integrated</a>
+</nav>
+
+    <div id="main-wrapper">
+      <main>
+        <h2>Terminal mode</h2>
+<p>Another possibility is to display <strong><code>&lt;initial-sh&gt;</code></strong> into a custom container with a minimum of styling.
+You will pass <code>static</code> as an attribute.
+In this case, the console will be automatically opened.</p>
+<div class="my-custom-container" style="height: 337px; background: darkblue">
+  <initial-sh id="console2" static=""></initial-sh>
+</div>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my-custom-container<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">height</span><span class="token punctuation">:</span> 337px<span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span> darkblue</span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>initial-sh</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>console2<span class="token punctuation">"</span></span> <span class="token attr-name">static</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>initial-sh</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+
+      </main>
+    </div>
+    
+<footer>
+  <p>
+    Made with
+    <a href="https://github.com/lit/lit-element-starter-ts">lit-starter-ts</a>
+  </p>
+</footer>
+  </body>
+</html>

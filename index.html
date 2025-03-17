@@ -1,0 +1,79 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><initial-sh> ⌲ Home</title>
+    <base href="/initial.term/">
+    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
+    <link href="prism-okaidia.css" rel="stylesheet">
+    <script src="/initial.term/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="/initial.term/node_modules/lit/polyfill-support.js"></script>
+    <script type="module" src="initial-sh.bundled.js"></script>
+  </head>
+  <body>
+    
+<header>
+  <h1>&lt;initial-sh></h1>
+  <h2>A console for webmasters worldwide</h2>
+</header>
+    
+<nav>
+  <a href=".">Home</a>
+  <a href="console/">Console</a>
+  <a href="integrated/">Integrated</a>
+</nav>
+
+    <div id="main-wrapper">
+      <main>
+        <h1>Initial Shell</h1>
+  <a href="https://www.npmjs.com/initial-sh">
+    <img src="https://img.shields.io/npm/v/initial-sh">
+  </a>
+<p>Welcome to Initial Shell—the Quake-styl<code>ish</code> console for webmasters worldwide! Embed it in your site with a single <code>&lt;script&gt;</code> tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to <code>initial.sh</code> for a broader ecosystem of plugins.</p>
+<h2>Features</h2>
+<ul>
+<li>Console and static mode UI</li>
+<li>Core Commands: <code>init</code>, <code>help</code>, <code>clear</code>, <code>exit</code>—essential controls.</li>
+<li>Webmaster Tools:
+<ul>
+<li><code>lighthouse</code>: Mock performance and SEO audit with typed-out scores.</li>
+<li><code>seo</code>: Mock SEO check with typed-out results.</li>
+<li><code>feedback</code>: Collect user input, ending with “done.”</li>
+</ul>
+</li>
+<li>Typing Effect: Responses appear character-by-character at 30ms intervals.</li>
+<li>Sounds: Audio cues for opening (400 Hz), closing (300 Hz), and errors (200 Hz).</li>
+<li>Standalone or Connected: Runs locally with mocks or links to <code>initial.sh/marketplace</code> for plugins and data.</li>
+<li>Plugins: Includes <code>ping</code>, <code>time</code>, <code>feedback</code>—extendable via a global register function.</li>
+</ul>
+<h2>Basic commands</h2>
+<p>Type commands at the <code>&gt;&gt;</code> prompt:</p>
+<ul>
+<li><code>init</code>: Welcome message.</li>
+<li><code>help</code>: List of available commands.</li>
+<li><code>clear</code>: Clear the console output.</li>
+<li><code>exit</code> or press Esc: Close the console.</li>
+<li><code>cookie</code>: List names of cookies set by the current website.</li>
+<li><code>lighthouse</code>: Mock audit with typed-out scores.</li>
+<li><code>seo</code>: Mock SEO check with typed-out tips.</li>
+<li><code>feedback</code>: Type your thoughts, end with “done.”</li>
+<li>Unknown commands show: <code>ish: command not found: [input]</code>.</li>
+</ul>
+<h2>More Info</h2>
+<p>Check out <a href="https://initial.sh">initial.sh</a> and <a href="https://github.com/unicolored/initial.term">Github repo</a>.</p>
+
+      </main>
+    </div>
+    
+<footer>
+  <p>
+    Made with
+    <a href="https://github.com/lit/lit-element-starter-ts">lit-starter-ts</a>
+  </p>
+</footer>
+  </body>
+</html>
