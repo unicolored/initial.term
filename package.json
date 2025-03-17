@@ -26,7 +26,7 @@
     "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
     "docs:build": "rollup -c --file docs/initial-sh.bundled.js",
     "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
-    "docs:serve": "wds --root-dir=docs --node-resolve --watch",
+    "docs:serve": "wds --root-dir=docs --node-resolve --base-path=/initial.term --watch",
     "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
     "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
     "serve": "wds --watch",
