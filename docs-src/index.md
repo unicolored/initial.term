@@ -3,42 +3,44 @@ layout: page.11ty.cjs
 title: <initial-sh> ⌲ Home
 ---
 
-## Console mode
+# Initial Shell
 
-Drop the **`<initial-sh>`** tag into your webpage with the script add the script to your page.
-Invoke the method show() of the initial-sh element when trigger an event, like a click on a button.
-By default, you can also press the **`Help`** key on your keyboard (= **Insert** on macos).
-To close the console: press Escape, or type **`exit`**.
+  <a href="https://www.npmjs.com/initial-sh">
+    <img src="https://img.shields.io/npm/v/initial-sh
+" />
+  </a>
 
-<initial-sh id="console1" sounds></initial-sh>
-<button onclick="document.getElementById('console1').show()">Open the console</button>
+Welcome to Initial Shell—the Quake-styl`ish` console for webmasters worldwide! Embed it in your site with a single `<script>` tag and use commands to audit performance, check SEO, gather feedback, and more. It works standalone for custom setups or connects to `initial.sh` for a broader ecosystem of plugins.
 
-```html
+## Features
 
-<initial-sh id="console1" sounds></initial-sh>
+- Console and static mode UI
+- Core Commands: `init`, `help`, `clear`, `exit`—essential controls.
+- Webmaster Tools:
+    - `lighthouse`: Mock performance and SEO audit with typed-out scores.
+    - `seo`: Mock SEO check with typed-out results.
+    - `feedback`: Collect user input, ending with “done.”
+- Typing Effect: Responses appear character-by-character at 30ms intervals.
+- Sounds: Audio cues for opening (400 Hz), closing (300 Hz), and errors (200 Hz).
+- Standalone or Connected: Runs locally with mocks or links to `initial.sh/marketplace` for plugins and data.
+- Plugins: Includes `ping`, `time`, `feedback`—extendable via a global register function.
 
-<body>
-...
-<button onclick="document.getElementById('console1').show()">Open the console</button>
+## Basic commands
 
-<initial-sh sounds></initial-sh>
+Type commands at the `>>` prompt:
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"></script>
-</body>
-```
+- `init`: Welcome message.
+- `help`: List of available commands.
+- `clear`: Clear the console output.
+- `exit` or press Esc: Close the console.
+- `cookie`: List names of cookies set by the current website.
+- `lighthouse`: Mock audit with typed-out scores.
+- `seo`: Mock SEO check with typed-out tips.
+- `feedback`: Type your thoughts, end with “done.”
+- Unknown commands show: `ish: command not found: [input]`.
 
-## Static mode
+## More Info
 
-Another possibility is to display **`<initial-sh>`** into a custom container with a minimum of styling.
-You will pass `static` as an attribute.
-In this case, the console will be automatically opened.
+Check out [initial.sh](https://initial.sh) and [Github repo](https://github.com/unicolored/initial.term).
 
-<div class="my-custom-container" style="height: 337px; background: darkblue">
-  <initial-sh id="console2" static></initial-sh>
-</div>
 
-```html
-<div class="my-custom-container" style="height: 337px; background: darkblue">
-  <initial-sh id="console2" static></initial-sh>
-</div>
-```

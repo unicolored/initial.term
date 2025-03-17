@@ -1,6 +1,6 @@
 {
   "name": "initial-sh",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
@@ -19,6 +19,7 @@
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:lit-analyzer": "lit-analyzer",
+    "check": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --check",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "docs": "npm run docs:clean && npm run build && npm run analyze && npm run docs:build && npm run docs:assets && npm run docs:gen",
     "docs:clean": "rimraf docs",
@@ -26,7 +27,7 @@
     "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
     "docs:build": "rollup -c --file docs/initial-sh.bundled.js",
     "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
-    "docs:serve": "wds --root-dir=docs --node-resolve --watch",
+    "docs:serve": "wds --root-dir=docs --node-resolve --base-path=/initial.term --watch",
     "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
     "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
     "serve": "wds --watch",
@@ -82,6 +83,9 @@
     "*.ts",
     "*.map"
   ],
-  "repository": "https://github.com/unicolored/initial-sh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unicolored/initial.term.git"
+  },
   "customElements": "custom-elements.json"
 }
