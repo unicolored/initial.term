@@ -82,6 +82,9 @@
     "*.ts",
     "*.map"
   ],
-  "repository": "https://github.com/unicolored/initial-sh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unicolored/initial.term.git"
+  },
   "customElements": "custom-elements.json"
 }
