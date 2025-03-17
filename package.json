@@ -87,5 +87,6 @@
     "type": "git",
     "url": "https://github.com/unicolored/initial.term.git"
   },
-  "customElements": "custom-elements.json"
+  "customElements": "custom-elements.json",
+  "packageManager": "yarn@4.7.0"
 }
