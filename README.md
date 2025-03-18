@@ -1,6 +1,8 @@
 # Initial Shell
 
-[![NPM](https://img.shields.io/npm/v/initial-sh)](https://www.npmjs.com/initial-sh)
+[![NPM](https://img.shields.io/npm/v/initial-sh?color=orange)](https://www.npmjs.com/initial-sh)
+[![npm](https://img.shields.io/npm/dm/initial-sh)](https://www.npmjs.com/package/initial-sh)
+
 [![Publish](https://github.com/unicolored/initial.term/actions/workflows/publish.yml/badge.svg)](https://github.com/unicolored/initial.term/actions/workflows/publish.yml)
 [![Docs](https://github.com/unicolored/initial.term/actions/workflows/docs.yml/badge.svg)](https://github.com/unicolored/initial.term/actions/workflows/docs.yml)
 
