@@ -1,4 +1,4 @@
-# Initial Shell
+# Initial Terminal
 
 [![NPM](https://img.shields.io/npm/v/initial-sh?color=orange)](https://www.npmjs.com/initial-sh)
 [![npm](https://img.shields.io/npm/dm/initial-sh)](https://www.npmjs.com/package/initial-sh)
