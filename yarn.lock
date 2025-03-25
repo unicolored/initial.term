@@ -2867,6 +2867,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xterm/xterm@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "@xterm/xterm@npm:5.5.0"
+  checksum: 10c0/358801feece58617d777b2783bec68dac1f52f736da3b0317f71a34f4e25431fb0b1920244f678b8d673f797145b4858c2a5ccb463a4a6df7c10c9093f1c9267
+  languageName: node
+  linkType: hard
+
 "a-sync-waterfall@npm:^1.0.0":
   version: 1.0.1
   resolution: "a-sync-waterfall@npm:1.0.1"
@@ -5823,6 +5830,7 @@ __metadata:
     "@web/test-runner": "npm:^0.15.0"
     "@web/test-runner-playwright": "npm:^0.9.0"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
+    "@xterm/xterm": "npm:^5.5.0"
     eslint: "npm:^8.15.0"
     lit: "npm:^3.2.0"
     lit-analyzer: "npm:^1.2.1"
