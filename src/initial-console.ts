@@ -10,11 +10,11 @@ interface Message {
 
 interface Plugin {
   name: string;
-  execute: (console: InitialSh) => void;
+  execute: (console: InitialConsole) => void;
 }
 
-@customElement('initial-sh')
-export class InitialSh extends LitElement {
+@customElement('initial-console')
+export class InitialConsole extends LitElement {
   static override styles = styles;
 
   theInput = createRef();
@@ -48,7 +48,7 @@ export class InitialSh extends LitElement {
     lighthouse: () => this._runLighthouse(),
     seo: () => this._checkSEO(),
   };
-  pluginCommands: Record<string, (console: InitialSh) => void> = {};
+  pluginCommands: Record<string, (console: InitialConsole) => void> = {};
 
   constructor() {
     super();
@@ -355,24 +355,24 @@ export class InitialSh extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'initial-sh': InitialSh;
+    'initial-console': InitialConsole;
   }
 }
 
 declare global {
   interface Window {
-    Initial: {
+    InitialIntConsole: {
       registerPlugin: (
         name: string,
-        execute: (console: InitialSh) => void
+        execute: (console: InitialConsole) => void
       ) => void;
     };
   }
 }
 
-window.Initial = {
+window.InitialIntConsole = {
   registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-sh') as InitialSh;
+    const console = document.querySelector('initial-console') as InitialConsole;
     if (console) console.pluginCommands[name] = execute;
   },
 };
