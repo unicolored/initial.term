@@ -1,4 +1,4 @@
-import {InitialSh} from '../initial-sh';
+import {InitialConsole} from '../initial-console';
 
 import {fixture, assert} from '@open-wc/testing';
 import {html} from 'lit/static-html.js';
@@ -6,7 +6,7 @@ import {html} from 'lit/static-html.js';
 suite('initial-sh', () => {
   test('is defined', () => {
     const el = document.createElement('initial-sh');
-    assert.instanceOf(el, InitialSh);
+    assert.instanceOf(el, InitialConsole);
   });
 
   test('renders with default values', async () => {
@@ -34,7 +34,9 @@ suite('initial-sh', () => {
   });
 
   test('handles a click', async () => {
-    const el = (await fixture(html`<initial-sh></initial-sh>`)) as InitialSh;
+    const el = (await fixture(
+      html`<initial-sh></initial-sh>`
+    )) as InitialConsole;
     const button = el.shadowRoot!.querySelector('button')!;
     button.click();
     await el.updateComplete;
@@ -49,7 +51,9 @@ suite('initial-sh', () => {
   });
 
   test('styling applied', async () => {
-    const el = (await fixture(html`<initial-sh></initial-sh>`)) as InitialSh;
+    const el = (await fixture(
+      html`<initial-sh></initial-sh>`
+    )) as InitialConsole;
     await el.updateComplete;
     assert.equal(getComputedStyle(el).paddingTop, '16px');
   });

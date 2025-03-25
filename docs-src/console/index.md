@@ -17,15 +17,19 @@ To close the console: press Escape, or type **`exit`**.
 <button onclick="document.getElementById('console1').show()">Open the console</button>
 
 ```html
-
 <initial-sh id="console1" sounds></initial-sh>
 
 <body>
-...
-<button onclick="document.getElementById('console1').show()">Open the console</button>
+  ...
+  <button onclick="document.getElementById('console1').show()">
+    Open the console
+  </button>
 
-<initial-sh sounds></initial-sh>
+  <initial-sh sounds></initial-sh>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"></script>
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"
+  ></script>
 </body>
 ```
