@@ -3,8 +3,9 @@ import {customElement, property} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
 import {stylesTerminal} from './lib/styles/styles-terminal.js';
 import {Shell} from './lib/shell';
-import {getBrowserName} from './lib/core/helper';
+import {colorize, getBrowserName} from './lib/core/helper';
 import {Audio} from './lib/audio';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
 @customElement('initial-terminal')
 export class InitialTerminal extends LitElement {
@@ -20,7 +21,7 @@ export class InitialTerminal extends LitElement {
 
   private readonly site = window.location.hostname || 'unknown site';
   private readonly browser = getBrowserName();
-  private readonly promptSign = `${this.site}@${this.browser} >> `;
+  private readonly promptSign!: string;
 
   pluginCommands: Record<string, (terminal: InitialTerminal) => void> = {};
   private history: string[] = [];
@@ -42,6 +43,12 @@ export class InitialTerminal extends LitElement {
     if (this.sounds) {
       this.audio = new Audio();
     }
+
+    this.promptSign = colorize`${[this.site, ['blue', 'bold']]}@${[
+      this.browser,
+      ['green', 'bold'],
+    ]} >> `;
+    // this.promptSign = colorize`${['red text', 'red']}`;
 
     this.shell.init();
   }
@@ -67,29 +74,6 @@ export class InitialTerminal extends LitElement {
     super.disconnectedCallback();
   }
 
-  // override async before() {
-  //   if (this.shell) {
-  //   this.messages = [...this.shell.history];
-  //
-  //   let typedText = '';
-  //   const index = this.messages.length - 1;
-  //
-  //   if (index > 1) {
-  //     for (const char of this.messages[index]) {
-  //       typedText += char;
-  //       this.messages = [
-  //         ...this.messages.slice(0, index),
-  //         typedText,
-  //         ...this.messages.slice(index + 1),
-  //       ];
-  //       await new Promise((resolve) => setTimeout(resolve, 10));
-  //     }
-  //   }
-  //   }
-  //
-  //   super.requestUpdate(name, oldValue, options);
-  // }
-
   override render() {
     this.history = [...this.shell.history];
     console.log('history', this.history);
@@ -102,15 +86,17 @@ export class InitialTerminal extends LitElement {
           <div class="shell">
             ${this.history.map((msg) => {
               return html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
-                ${msg}
+                ${unsafeHTML(msg)}
               </p>`;
             })}
             ${this.messages.map((msg) => {
-              return html`<p class="typed">${msg}</p>`;
+              return html`<p class="typed">${unsafeHTML(msg)}</p>`;
             })}
           </div>
           <div class="input-line">
-            <span class="prompt">${this.promptSign}</span>
+            <span class="prompt">
+              ${html`${unsafeHTML(this.promptSign)}`}
+            </span>
             <input
               ${ref(this.theInput)}
               @keydown=${this.handleInput}
@@ -150,3 +136,29 @@ export class InitialTerminal extends LitElement {
     }
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'initial-terminal': InitialTerminal;
+  }
+}
+
+declare global {
+  interface Window {
+    InitialIntTerminal: {
+      registerPlugin: (
+        name: string,
+        execute: (console: InitialTerminal) => void
+      ) => void;
+    };
+  }
+}
+
+window.InitialIntTerminal = {
+  registerPlugin: (name, execute) => {
+    const console = document.querySelector(
+      'initial-terminal'
+    ) as InitialTerminal;
+    if (console) console.pluginCommands[name] = execute;
+  },
+};

@@ -2,7 +2,7 @@ import {css} from 'lit';
 
 export const stylesTerminal = css`
   :host {
-    --initial-text-color: yellow; /* Changes text color to blue */
+    --initial-text-color: white; /* Changes text color to blue */
     --initial-background-color: rgba(
       0,
       0,
@@ -24,11 +24,6 @@ export const stylesTerminal = css`
     z-index: 1000;
     display: block;
     font-size: 20px;
-  }
-  :host([open]) {
-    top: 0;
-  }
-  :host([static]) {
     position: relative;
     top: 0;
     z-index: 1;
@@ -54,7 +49,7 @@ export const stylesTerminal = css`
     color: var(--initial-text-color, black);
   }
   .banner {
-    color: #ffff00;
+    color: #ffffff;
     margin-bottom: 10px;
   }
   .shell {
@@ -93,5 +88,24 @@ export const stylesTerminal = css`
   .error {
     color: #ff4040;
     color: red;
+  }
+
+  .text-red {
+    color: #ff0000;
+  }
+  .text-yellow {
+    color: #ffff00;
+  }
+  .text-blue {
+    color: #88aaff;
+  }
+  .text-green {
+    color: #00ff00;
+  }
+  .text-bold {
+    font-weight: bold;
+  }
+  .text-italic {
+    font-style: italic;
   }
 `;
