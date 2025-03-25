@@ -6,12 +6,6 @@
   "module": "initial-sh.js",
   "types": "initial-sh.d.ts",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/chessfield.js",
-      "require": "./dist/chessfield.bundled.js"
-    }
-  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

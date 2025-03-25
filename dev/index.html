@@ -6,7 +6,7 @@
     <title>&lt;my-element> Demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../initial-console.js"></script>
+    <script type="module" src="../initial-sh.js"></script>
     <script type="module" src="../initial-terminal.js"></script>
     <style>
       p {
@@ -20,7 +20,7 @@
   </head>
   <body>
     <h1>Non static - Press Help or click</h1>
-    <initial-console id="console1" sounds> </initial-console>
+    <initial-sh id="console1" sounds> </initial-sh>
 
     <p>
       <button onclick="document.getElementById('console1').show()">
@@ -32,7 +32,7 @@
 
     <h1>Static</h1>
     <div class="my-console-container" style="background: blue; height: 333px">
-      <initial-console id="console2" static> </initial-console>
+      <initial-sh id="console2" static> </initial-sh>
     </div>
 
     <hr />
