@@ -17,9 +17,9 @@ Welcome to Initial Shell—the Quake-styl`ish` console for webmasters worldwide!
 - Console and static mode UI
 - Core Commands: `init`, `help`, `clear`, `exit`—essential controls.
 - Webmaster Tools:
-    - `lighthouse`: Mock performance and SEO audit with typed-out scores.
-    - `seo`: Mock SEO check with typed-out results.
-    - `feedback`: Collect user input, ending with “done.”
+  - `lighthouse`: Mock performance and SEO audit with typed-out scores.
+  - `seo`: Mock SEO check with typed-out results.
+  - `feedback`: Collect user input, ending with “done.”
 - Typing Effect: Responses appear character-by-character at 30ms intervals.
 - Sounds: Audio cues for opening (400 Hz), closing (300 Hz), and errors (200 Hz).
 - Standalone or Connected: Runs locally with mocks or links to `initial.sh/marketplace` for plugins and data.
@@ -42,5 +42,3 @@ Type commands at the `>>` prompt:
 ## More Info
 
 Check out [initial.sh](https://initial.sh) and [Github repo](https://github.com/unicolored/initial.term).
-
-

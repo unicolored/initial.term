@@ -1,64 +1,88 @@
+import {ShellOptions} from './interface';
+
 export class Shell {
-  // private coreCommands: Record<string, () => void> = {
-  //   init: () =>
-  //     this._addOutput(`Welcome to initial! Type "help" fer commands.`),
-  //   help: () =>
-  //     this._addOutput(
-  //       `Commands: init, help, clear, exit, cookie, lighthouse, seo, feedback${
-  //         Object.keys(this.pluginCommands).length
-  //           ? ', ' + Object.keys(this.pluginCommands).join(', ')
-  //           : ''
-  //       }`
-  //     ),
-  //   clear: () => {
-  //     this.messages = [];
-  //     // this.conversation = [];
-  //   },
-  //   // exit: () => this.close(),
-  //   cookie: () => _listCookies(),
-  //   lighthouse: () => _runLighthouse(),
-  //   seo: () => _checkSEO(),
-  // };
+  private coreCommands: Record<string, () => string | void> = {
+    info: () => {
+      return this.putMessage([`Hey hi!`, `Have a great day!`]);
+    },
+    // help: () =>
+    //   this._addOutput(
+    //     `Commands: init, help, clear, exit, cookie, lighthouse, seo, feedback${
+    //       Object.keys(this.pluginCommands).length
+    //         ? ', ' + Object.keys(this.pluginCommands).join(', ')
+    //         : ''
+    //     }`
+    //   ),
+    clear: () => {
+      this.history = [];
+      // this.conversation = [];
+    },
+    // exit: () => this.close(),
+    // cookie: () => _listCookies(),
+    // lighthouse: () => _runLighthouse(),
+    // seo: () => _checkSEO(),
+  };
   // pluginCommands: Record<string, (terminal: InitialTerminal) => void> = {};
 
+  history: string[] = [];
   messages: string[] = [];
   // private conversation: Message[] = [];
 
-  constructor(options: unknown) {
-    console.log(options);
+  constructor(private options: ShellOptions) {}
+
+  init() {
+    if (this.options.banner) {
+      this.putMessage([this.options.banner]);
+    }
   }
 
-  init(element: HTMLElement) {
-    console.log(element);
-  }
-
-  writeln(input: string) {
-    console.log(input);
-  }
-
-  async _addOutput(input: string, isError = false) {
+  async processInput(input: string): Promise<string | string[]> {
     input = input.trim();
 
-    this.messages = [...this.messages, isError ? `Error: ${input}` : input];
+    // this.history = [...this.history, isError ? `Error: ${input}` : input];
 
-    // await this._processCommand(text);
-    // return this.messages;
-    return `ish :: Command not found: ${input}`;
+    const res = await this._processCommand(input);
+
+    if (res) {
+      this.putMessage([res]);
+    }
+
+    return res ?? [];
   }
 
-  // private async _processCommand(command: string) {
-  //   const cmd = command.toLowerCase();
-  //   if (this.coreCommands[cmd]) {
-  //     this.coreCommands[cmd]();
-  //   } else if (this.pluginCommands[cmd]) {
-  //     // this.pluginCommands[cmd]();
-  //     // TODO
-  //     console.log('TODO')
-  //   } else {
-  //     this.conversation.push({role: 'user', content: command});
-  //     await this._emitConversation();
-  //   }
-  // }
+  putMessage(input: string[]) {
+    this.history = [...this.history, ...this.messages];
+    this.messages = [...input];
+  }
+
+  /**
+   * @deprecated
+   * @param input
+   * @param isError
+   */
+  putHistory(input: string, isError = false) {
+    this.history = [...this.history, isError ? `Error: ${input}` : input];
+    console.log(this.history.length, this.history);
+  }
+
+  private async _processCommand(command: string) {
+    const cmd = command.trim().toLowerCase();
+    if (this.coreCommands[cmd]) {
+      return this.coreCommands[cmd]();
+    } /*else if (this.pluginCommands[cmd]) {
+      // this.pluginCommands[cmd]();
+      // TODO
+      console.log('TODO')
+    }*/ /*else {
+      this.conversation.push({role: 'user', content: command});
+      await this._emitConversation();
+    }*/
+    return `ish :: Command not found: ${command}`;
+  }
+
+  clear() {
+    this.history = [];
+  }
 
   // private async _emitConversation() {
   //   // const convo = {model: 'initial-shell', messages: [...this.conversation]};
