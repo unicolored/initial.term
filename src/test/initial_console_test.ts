@@ -34,7 +34,9 @@ suite('initial-sh', () => {
   });
 
   test('handles a click', async () => {
-    const el = (await fixture(html`<initial-sh></initial-sh>`)) as InitialConsole;
+    const el = (await fixture(
+      html`<initial-sh></initial-sh>`
+    )) as InitialConsole;
     const button = el.shadowRoot!.querySelector('button')!;
     button.click();
     await el.updateComplete;
@@ -49,7 +51,9 @@ suite('initial-sh', () => {
   });
 
   test('styling applied', async () => {
-    const el = (await fixture(html`<initial-sh></initial-sh>`)) as InitialConsole;
+    const el = (await fixture(
+      html`<initial-sh></initial-sh>`
+    )) as InitialConsole;
     await el.updateComplete;
     assert.equal(getComputedStyle(el).paddingTop, '16px');
   });

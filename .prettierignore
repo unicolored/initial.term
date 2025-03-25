@@ -1,6 +1,7 @@
 var/
 docs/
 test/
+.yarn/
 
 pnpm-lock.yaml
 
