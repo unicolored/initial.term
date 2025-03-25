@@ -4,9 +4,9 @@
 /test/
 /custom-elements.json
 # top level source
-/initial-sh.js
-/initial-sh.js.map
-/initial-sh.d.ts
-/initial-sh.d.ts.map
+/initial-*.js
+/initial-*.js.map
+/initial-*.d.ts
+/initial-*.d.ts.map
 # only generated for size check
 /initial-sh.bundled.js

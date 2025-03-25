@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@types/mocha": "^10.0.10",
-    "@xterm/xterm": "^5.5.0",
     "lit": "^3.2.0"
   },
   "devDependencies": {

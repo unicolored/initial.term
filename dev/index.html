@@ -6,11 +6,12 @@
     <title>&lt;my-element> Demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../initial-sh.js"></script>
+    <script type="module" src="../initial-console.js"></script>
+    <script type="module" src="../initial-terminal.js"></script>
     <style>
       p {
         border: solid 1px blue;
-        padding: 83px;
+        padding: 8px;
       }
       button {
         background: green;
@@ -18,16 +19,26 @@
     </style>
   </head>
   <body>
-    <initial-sh id="console1" sounds></initial-sh>
-
-    <div class="my-console-container" style="height: 337px; background: blue">
-      <initial-sh id="console2" static></initial-sh>
-    </div>
+    <h1>Non static - Press Help or click</h1>
+    <initial-console id="console1" sounds> </initial-console>
 
     <p>
       <button onclick="document.getElementById('console1').show()">
         Launch initial
       </button>
     </p>
+
+    <hr />
+
+    <h1>Static</h1>
+    <div class="my-console-container" style="background: blue; height: 333px">
+      <initial-console id="console2" static> </initial-console>
+    </div>
+
+    <hr />
+    <h1>initial terminal</h1>
+    <div class="my-console-container">
+      <initial-terminal id="terminal1"> </initial-terminal>
+    </div>
   </body>
 </html>
