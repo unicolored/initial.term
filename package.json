@@ -1,6 +1,6 @@
 {
   "name": "initial-sh",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
