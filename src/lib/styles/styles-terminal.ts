@@ -1,16 +1,25 @@
 import {css} from 'lit';
 
-export const styles = css`
+export const stylesTerminal = css`
   :host {
-    color: var(--initial-sh-text-color, black);
-    background: var(--initial-sh-background-color, white);
-    font-family: var(--initial-sh-font-family, Roboto);
+    --initial-text-color: yellow; /* Changes text color to blue */
+    --initial-background-color: rgba(
+      0,
+      0,
+      0,
+      0.9
+    ); /* Changes background to gray */
+    --initial-font-family: 'Courier New', monospace; /* Changes font to Arial */
+  }
+
+  :host {
+    color: var(--initial-text-color, black);
+    background: var(--initial-background-color, white);
     position: fixed;
     top: -100%;
     left: 0;
     width: 100%;
     height: 50vh;
-    background: rgba(0, 0, 0, 0.9);
     transition: top 0.3s ease-in-out;
     z-index: 1000;
     display: block;
@@ -26,32 +35,29 @@ export const styles = css`
     height: 100%;
     display: block;
     overflow-y: auto;
-    background: transparent;
   }
   p {
     margin: 0 0 4px 0;
   }
-  .wrapper {
+  .console {
     display: flex;
     overflow-y: auto;
     align-items: stretch;
     height: 100%;
   }
-  .console-content {
+  .terminal {
     margin: 15px;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    font-family: 'Courier New', monospace;
-    color: #00ff00;
-    color: white;
-    // background: #1a1a1a;
+    font-family: var(--initial-font-family, 'Courier New, monospace');
+    color: var(--initial-text-color, black);
   }
   .banner {
     color: #ffff00;
     margin-bottom: 10px;
   }
-  .output {
+  .shell {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -70,13 +76,14 @@ export const styles = css`
     margin-right: 5px;
   }
   input {
-    background: none;
+    background: transparent;
     border: none;
     color: #00ff00;
     color: white;
     font-family: inherit;
     font-size: 20px;
-    width: 100%;
+    flex-grow: 1;
+    padding: 4px;
     outline: none;
   }
   input::placeholder {

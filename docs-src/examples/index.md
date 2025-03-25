@@ -28,6 +28,5 @@ p {
 <h3>HTML</h3>
 
 ```html
-<initial-sh>
-</initial-sh>
+<initial-sh> </initial-sh>
 ```
