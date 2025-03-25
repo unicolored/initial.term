@@ -1,17 +1,11 @@
 {
   "name": "initial-sh",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
   "types": "initial-sh.d.ts",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/chessfield.js",
-      "require": "./dist/chessfield.bundled.js"
-    }
-  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

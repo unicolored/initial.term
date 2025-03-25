@@ -2,8 +2,8 @@ import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 
-@customElement('initial-console')
-export class InitialConsole extends LitElement {
+@customElement('initial-sh')
+export class InitialSh extends LitElement {
   static override styles = stylesConsole;
 
   @property({type: String}) banner = 'initial v1.0 - Type "init" or "help"';
@@ -12,7 +12,7 @@ export class InitialConsole extends LitElement {
   @property({type: Boolean, reflect: true}) private static = false;
   @property({type: Boolean, reflect: false}) private sounds = false;
   private audioContext: AudioContext | null = null;
-  pluginCommands: Record<string, (console: InitialConsole) => void> = {};
+  pluginCommands: Record<string, (console: InitialSh) => void> = {};
 
   constructor() {
     super();
@@ -94,7 +94,7 @@ export class InitialConsole extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'initial-console': InitialConsole;
+    'initial-sh': InitialSh;
   }
 }
 
@@ -103,7 +103,7 @@ declare global {
     InitialIntConsole: {
       registerPlugin: (
         name: string,
-        execute: (console: InitialConsole) => void
+        execute: (console: InitialSh) => void
       ) => void;
     };
   }
@@ -111,7 +111,7 @@ declare global {
 
 window.InitialIntConsole = {
   registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-console') as InitialConsole;
+    const console = document.querySelector('initial-sh') as InitialSh;
     if (console) console.pluginCommands[name] = execute;
   },
 };
