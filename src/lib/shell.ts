@@ -62,7 +62,6 @@ export class Shell {
    */
   putHistory(input: string, isError = false) {
     this.history = [...this.history, isError ? `Error: ${input}` : input];
-    console.log(this.history.length, this.history);
   }
 
   private async _processCommand(command: string) {

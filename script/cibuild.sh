@@ -2,4 +2,5 @@
 
 set -e
 
-yarn build
+yarn build:prod
+yarn docs:build

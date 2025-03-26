@@ -76,9 +76,7 @@ export class InitialTerminal extends LitElement {
 
   override render() {
     this.history = [...this.shell.history];
-    console.log('history', this.history);
     this.messages = [...this.shell.messages];
-    console.log('messages', this.messages);
 
     return html`
       <div class="console" @click=${this.handleClick}>
