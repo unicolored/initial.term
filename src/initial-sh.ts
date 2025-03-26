@@ -2,6 +2,7 @@ import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 import {Audio} from './lib/audio';
+import './initial-terminal';
 
 @customElement('initial-sh')
 export class InitialSh extends LitElement {
@@ -18,7 +19,6 @@ export class InitialSh extends LitElement {
 
   constructor() {
     super();
-    console.log('init!');
     // Add keyboard listener in constructor
     if (!this.static) {
       document.addEventListener('keyup', this.handleKeydown.bind(this));
@@ -42,7 +42,7 @@ export class InitialSh extends LitElement {
   }
 
   override render() {
-    return html`<initial-terminal id="terminal" static></initial-terminal>`;
+    return html`<initial-terminal static></initial-terminal>`;
   }
 
   private handleKeydown(e: KeyboardEvent) {

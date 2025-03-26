@@ -19,7 +19,7 @@ module.exports = function (data) {
     <link href="/prism-okaidia.css" rel="stylesheet" />
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="/node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="/initial-sh.bundled.js"></script>
+    <script type="module" src="/initial-sh.docs.js"></script>
   </head>
   <body>
     ${header()}
