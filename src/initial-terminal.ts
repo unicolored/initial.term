@@ -44,9 +44,9 @@ export class InitialTerminal extends LitElement {
       this.audio = new Audio();
     }
 
-    this.promptSign = colorize`${[this.site, ['blue', 'bold']]}@${[
-      this.browser,
-      ['green', 'bold'],
+    this.promptSign = colorize`${[this.browser, ['yellow', 'bold']]}@${[
+      this.site,
+      ['red', 'bold'],
     ]} >> `;
     // this.promptSign = colorize`${['red text', 'red']}`;
 
