@@ -7,7 +7,7 @@ import postcss from 'rollup-plugin-postcss';
 export default {
   input: 'initial-sh.js',
   output: {
-    file: 'initial-sh.bundled.js',
+    file: 'initial-sh.bundle.js',
     format: 'iife',
     name: 'Initial',
   },
