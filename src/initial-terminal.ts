@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
 import {stylesTerminal} from './lib/styles/styles-terminal.js';
 import {Shell} from './lib/shell';
-import {colorize, getBrowserName} from './lib/core/helper';
+import {colorize} from './lib/core/helper';
 import {Audio} from './lib/audio';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
@@ -20,7 +20,7 @@ export class InitialTerminal extends LitElement {
   private readonly audio: Audio | null = null;
 
   private readonly site = window.location.hostname || 'unknown site';
-  private readonly browser = getBrowserName();
+  // private readonly browser = getBrowserName();
   private readonly promptSign!: string;
 
   pluginCommands: Record<string, (terminal: InitialTerminal) => void> = {};
@@ -44,7 +44,11 @@ export class InitialTerminal extends LitElement {
       this.audio = new Audio();
     }
 
-    this.promptSign = colorize`${[this.browser, ['yellow', 'bold']]}@${[
+    // this.promptSignAuth = colorize`${[this.user, ['yellow', 'bold']]}@${[
+    //   this.site,
+    //   ['red', 'bold'],
+    // ]} >> `;
+    this.promptSign = colorize`${[
       this.site,
       ['red', 'bold'],
     ]} >> `;
