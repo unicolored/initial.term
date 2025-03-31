@@ -1,6 +1,6 @@
 {
   "name": "initial-sh",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
@@ -84,5 +84,5 @@
     "url": "https://github.com/unicolored/initial.term.git"
   },
   "customElements": "custom-elements.json",
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.8.1"
 }
