@@ -44,10 +44,7 @@ export class InitialTerminal extends LitElement {
     //   this.site,
     //   ['red', 'bold'],
     // ]} >> `;
-    this.promptSign = colorize`${[
-      this.site,
-      ['red', 'bold'],
-    ]} >> `;
+    this.promptSign = colorize`${[this.site, ['red', 'bold']]} >> `;
     // this.promptSign = colorize`${['red text', 'red']}`;
 
     this.shell.init();

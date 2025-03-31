@@ -42,7 +42,10 @@ export class InitialSh extends LitElement {
   }
 
   override render() {
-    return html`<initial-terminal static ?sounds=${this.sounds}></initial-terminal>`;
+    return html`<initial-terminal
+      static
+      ?sounds=${this.sounds}
+    ></initial-terminal>`;
   }
 
   private handleKeydown(e: KeyboardEvent) {
