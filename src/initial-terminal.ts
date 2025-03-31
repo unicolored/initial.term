@@ -13,11 +13,11 @@ export class InitialTerminal extends LitElement {
 
   @property({type: String, reflect: false}) private banner =
     'initial.sh - Type "info"';
-  @property({type: Boolean, reflect: false}) private sounds = true;
+  @property({type: Boolean, reflect: false}) private sounds = false;
 
   private readonly shell: Shell;
   private readonly theInput = createRef();
-  private readonly audio: Audio | null = null;
+  private audio: Audio | null = null;
 
   private readonly site = window.location.hostname || 'unknown site';
   // private readonly browser = getBrowserName();
@@ -40,10 +40,6 @@ export class InitialTerminal extends LitElement {
       // cursorInactiveStyle: 'outline',
     });
 
-    if (this.sounds) {
-      this.audio = new Audio();
-    }
-
     // this.promptSignAuth = colorize`${[this.user, ['yellow', 'bold']]}@${[
     //   this.site,
     //   ['red', 'bold'],
@@ -58,6 +54,10 @@ export class InitialTerminal extends LitElement {
   }
 
   override firstUpdated() {
+    if (this.sounds) {
+      this.audio = new Audio();
+    }
+
     const paragraphs =
       this.shadowRoot?.querySelectorAll<HTMLParagraphElement>('p.typed');
     if (paragraphs) {
