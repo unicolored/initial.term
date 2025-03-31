@@ -15,17 +15,13 @@ export class InitialSh extends LitElement {
   @property({type: Boolean, reflect: false}) private sounds = false;
   pluginCommands: Record<string, (console: InitialSh) => void> = {};
 
-  private readonly audio: Audio | null = null;
+  private audio: Audio | null = null;
 
   constructor() {
     super();
     // Add keyboard listener in constructor
     if (!this.static) {
       document.addEventListener('keyup', this.handleKeydown.bind(this));
-    }
-
-    if (this.sounds) {
-      this.audio = new Audio();
     }
   }
 
@@ -39,10 +35,17 @@ export class InitialSh extends LitElement {
     if (this.static) {
       this.show();
     }
+
+    if (this.sounds) {
+      this.audio = new Audio();
+    }
   }
 
   override render() {
-    return html`<initial-terminal static></initial-terminal>`;
+    return html`<initial-terminal
+      static
+      ?sounds=${this.sounds}
+    ></initial-terminal>`;
   }
 
   private handleKeydown(e: KeyboardEvent) {

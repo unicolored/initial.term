@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
 import {stylesTerminal} from './lib/styles/styles-terminal.js';
 import {Shell} from './lib/shell';
-import {colorize, getBrowserName} from './lib/core/helper';
+import {colorize} from './lib/core/helper';
 import {Audio} from './lib/audio';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
@@ -13,14 +13,14 @@ export class InitialTerminal extends LitElement {
 
   @property({type: String, reflect: false}) private banner =
     'initial.sh - Type "info"';
-  @property({type: Boolean, reflect: false}) private sounds = true;
+  @property({type: Boolean, reflect: false}) private sounds = false;
 
   private readonly shell: Shell;
   private readonly theInput = createRef();
-  private readonly audio: Audio | null = null;
+  private audio: Audio | null = null;
 
   private readonly site = window.location.hostname || 'unknown site';
-  private readonly browser = getBrowserName();
+  // private readonly browser = getBrowserName();
   private readonly promptSign!: string;
 
   pluginCommands: Record<string, (terminal: InitialTerminal) => void> = {};
@@ -40,20 +40,21 @@ export class InitialTerminal extends LitElement {
       // cursorInactiveStyle: 'outline',
     });
 
-    if (this.sounds) {
-      this.audio = new Audio();
-    }
-
-    this.promptSign = colorize`${[this.browser, ['yellow', 'bold']]}@${[
-      this.site,
-      ['red', 'bold'],
-    ]} >> `;
+    // this.promptSignAuth = colorize`${[this.user, ['yellow', 'bold']]}@${[
+    //   this.site,
+    //   ['red', 'bold'],
+    // ]} >> `;
+    this.promptSign = colorize`${[this.site, ['red', 'bold']]} >> `;
     // this.promptSign = colorize`${['red text', 'red']}`;
 
     this.shell.init();
   }
 
   override firstUpdated() {
+    if (this.sounds) {
+      this.audio = new Audio();
+    }
+
     const paragraphs =
       this.shadowRoot?.querySelectorAll<HTMLParagraphElement>('p.typed');
     if (paragraphs) {
