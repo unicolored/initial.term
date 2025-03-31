@@ -1,6 +1,6 @@
 ---
 layout: page.11ty.cjs
-title: <initial-sh> ⌲ Terminal
+title: initial-sh ⌲ Terminal
 tags: terminal
 name: Terminal
 description: The Terminal mode

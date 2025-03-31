@@ -1,6 +1,6 @@
 ---
 layout: page.11ty.cjs
-title: <initial-sh> ⌲ Console
+title: initial-sh ⌲ Console
 tags: console
 name: Console
 description: The Console mode
@@ -17,15 +17,13 @@ To close the console: press Escape, or type **`exit`**.
 <button onclick="document.getElementById('console1').show()">Open the console</button>
 
 ```html
-<initial-sh id="console1" sounds></initial-sh>
+<initial-sh id="console1" sounds="true"></initial-sh>
 
 <body>
   ...
   <button onclick="document.getElementById('console1').show()">
     Open the console
   </button>
-
-  <initial-sh sounds></initial-sh>
 
   <script
     type="module"
