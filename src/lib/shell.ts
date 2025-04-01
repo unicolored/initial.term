@@ -1,6 +1,9 @@
 import {ShellOptions} from './interface';
+import {Subject} from 'rxjs';
 
 export class Shell {
+  events = new Subject<Event>();
+
   private coreCommands: Record<string, () => string | void> = {
     info: () => {
       return this.putMessage([`Hey hi!`, `Have a great day!`]);
@@ -17,7 +20,11 @@ export class Shell {
       this.history = [];
       // this.conversation = [];
     },
-    // exit: () => this.close(),
+    exit: () => {
+      this.putMessage([`Bye!`]);
+
+      return `>>event:callback:close`;
+    },
     // cookie: () => _listCookies(),
     // lighthouse: () => _runLighthouse(),
     // seo: () => _checkSEO(),
@@ -44,7 +51,13 @@ export class Shell {
     const res = await this._processCommand(input);
 
     if (res) {
-      this.putMessage([res]);
+      if (res.startsWith('>>event:')) {
+        const eventName = res.replace('>>event:', '');
+        const event = new Event(eventName);
+        this.events.next(event);
+      } else {
+        this.putMessage([res]);
+      }
     }
 
     return res ?? [];
@@ -81,6 +94,7 @@ export class Shell {
 
   clear() {
     this.history = [];
+    this.events.unsubscribe();
   }
 
   // private async _emitConversation() {

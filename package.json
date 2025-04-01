@@ -1,6 +1,6 @@
 {
   "name": "initial-sh",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "The Initial Console for webmasters",
   "main": "initial-sh.bundled.js",
   "module": "initial-sh.js",
@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@types/mocha": "^10.0.10",
-    "lit": "^3.2.0"
+    "lit": "^3.2.0",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
