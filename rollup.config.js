@@ -8,8 +8,7 @@ export default {
   input: 'initial-console.js',
   output: {
     file: 'initial-sh.js',
-    format: 'iife',
-    name: 'Initial',
+    format: 'esm',
   },
   onwarn(warning) {
     if (warning.code !== 'THIS_IS_UNDEFINED') {
