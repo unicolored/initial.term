@@ -1,6 +1,2 @@
 name = "initial-term"
 pages_build_output_dir = "./docs"
-assets = { directory = "./docs/node_modules" }
-[build]
-command = "yarn docs"
-cwd = "./"
