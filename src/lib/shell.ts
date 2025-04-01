@@ -8,6 +8,7 @@ export class Shell {
     info: () => {
       return this.putMessage([`Hey hi!`, `Have a great day!`]);
     },
+    version: () => {},
     // help: () =>
     //   this._addOutput(
     //     `Commands: init, help, clear, exit, cookie, lighthouse, seo, feedback${
