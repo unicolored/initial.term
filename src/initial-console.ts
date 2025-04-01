@@ -2,10 +2,10 @@ import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 import {Audio} from './lib/audio';
-import './initial-sh';
+import './initial-shell';
 import {ConsoleConfig} from './lib/interface';
 import {createRef, Ref, ref} from 'lit/directives/ref.js';
-import {InitialSh} from './initial-sh';
+import {InitialShell} from './initial-shell';
 
 @customElement('initial-console')
 export class InitialConsole extends LitElement {
@@ -23,7 +23,7 @@ export class InitialConsole extends LitElement {
 
   private audio: Audio | null = null;
 
-  private shellElement: Ref<InitialSh> = createRef(); // This will hold the reference to the initial-sh element
+  private shellElement: Ref<InitialShell> = createRef(); // This will hold the reference to the initial-sh element
 
   constructor() {
     super();
@@ -56,11 +56,11 @@ export class InitialConsole extends LitElement {
   }
 
   override render() {
-    return html`<initial-sh
+    return html`<initial-shell
         ${ref(this.shellElement)}
         static
         ?sounds=${this.sounds}
-      ></initial-sh>
+      ></initial-shell>
       ${this.config.showDrop && !this.static
         ? html`
             <button @click=${() => (this.open ? this.close() : this.show())}>
@@ -106,6 +106,7 @@ export class InitialConsole extends LitElement {
     if (!this.open) {
       this.open = true;
       this.audio?.playSound(900, 'triangle', 0.08);
+      this.shellElement.value?.focusInput();
     }
   }
 

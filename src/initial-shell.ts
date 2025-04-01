@@ -1,14 +1,14 @@
 import {html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import {createRef, ref} from 'lit/directives/ref.js';
+import {createRef, Ref, ref} from 'lit/directives/ref.js';
 import {stylesSh} from './lib/styles/styles-sh';
 import {Shell} from './lib/shell';
 import {colorize} from './lib/core/helper';
 import {Audio} from './lib/audio';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
-@customElement('initial-sh')
-export class InitialSh extends LitElement {
+@customElement('initial-shell')
+export class InitialShell extends LitElement {
   static override styles = stylesSh;
 
   @property({type: String, reflect: false}) private banner =
@@ -16,16 +16,20 @@ export class InitialSh extends LitElement {
   @property({type: Boolean, reflect: false}) private sounds = false;
 
   protected readonly shell: Shell;
-  private readonly theInput = createRef();
+  private readonly theInput: Ref<HTMLInputElement> = createRef();
   private audio: Audio | null = null;
 
   private readonly site = window.location.hostname || 'unknown site';
   // private readonly browser = getBrowserName();
   private readonly promptSign!: string;
 
-  pluginCommands: Record<string, (terminal: InitialSh) => void> = {};
+  pluginCommands: Record<string, (terminal: InitialShell) => void> = {};
   private history: string[] = [];
   // private messages: string[] = [];
+
+  focusInput = () => {
+    this.theInput?.value?.focus();
+  };
 
   @property({type: Array}) messages: string[] = []; // Tracks the currently typed text
   @property({type: Array}) typedMessages: string[] = []; // Tracks the currently typed text
@@ -45,7 +49,6 @@ export class InitialSh extends LitElement {
     this.shell.init();
 
     this.shell.events.subscribe((event: Event) => {
-      console.log(event);
       this.dispatchEvent(event);
     });
   }
@@ -134,24 +137,24 @@ export class InitialSh extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'initial-sh': InitialSh;
+    'initial-shell': InitialShell;
   }
 }
 
 declare global {
   interface Window {
-    InitialIntTerminal: {
+    InitialIntShell: {
       registerPlugin: (
         name: string,
-        execute: (console: InitialSh) => void
+        execute: (console: InitialShell) => void
       ) => void;
     };
   }
 }
 
-window.InitialIntTerminal = {
+window.InitialIntShell = {
   registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-terminal') as InitialSh;
+    const console = document.querySelector('initial-shell') as InitialShell;
     if (console) console.pluginCommands[name] = execute;
   },
 };
