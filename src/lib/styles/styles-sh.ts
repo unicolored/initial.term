@@ -1,6 +1,6 @@
 import {css} from 'lit';
 
-export const stylesTerminal = css`
+export const stylesSh = css`
   :host {
     --initial-text-color: white; /* Changes text color to blue */
     --initial-background-color: rgba(
