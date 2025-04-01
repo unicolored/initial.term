@@ -1,3 +1,8 @@
+export interface ConsoleConfig {
+  showDrop: boolean;
+  // You can add more configuration options here
+}
+
 export interface Message {
   role: 'user' | 'developer';
   content: string;

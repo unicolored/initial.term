@@ -3,12 +3,18 @@ import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 import {Audio} from './lib/audio';
 import './initial-sh';
+import {ConsoleConfig} from './lib/interface';
+import {createRef, Ref, ref} from 'lit/directives/ref.js';
+import {InitialSh} from './initial-sh';
 
 @customElement('initial-console')
 export class InitialConsole extends LitElement {
   static override styles = stylesConsole;
 
-  @property({type: String}) banner = 'initial v1.0 - Type "init" or "help"';
+  @property({type: Object}) config: ConsoleConfig = {
+    showDrop: false,
+    // Default values for other configuration options
+  };
   @property({type: String}) apiUrl = '';
   @property({type: Boolean, reflect: true}) private open = false;
   @property({type: Boolean, reflect: true}) private static = false;
@@ -16,6 +22,8 @@ export class InitialConsole extends LitElement {
   pluginCommands: Record<string, (console: InitialConsole) => void> = {};
 
   private audio: Audio | null = null;
+
+  private shellElement: Ref<InitialSh> = createRef(); // This will hold the reference to the initial-sh element
 
   constructor() {
     super();
@@ -39,10 +47,48 @@ export class InitialConsole extends LitElement {
     if (this.sounds) {
       this.audio = new Audio();
     }
+
+    if (this.shellElement?.value) {
+      this.shellElement.value.addEventListener('callback:close', () => {
+        this.close();
+      });
+    }
   }
 
   override render() {
-    return html`<initial-sh static ?sounds=${this.sounds}></initial-sh>`;
+    return html`<initial-sh
+        ${ref(this.shellElement)}
+        static
+        ?sounds=${this.sounds}
+      ></initial-sh>
+      ${this.config.showDrop && !this.static
+        ? html`
+            <button @click=${() => (this.open ? this.close() : this.show())}>
+              initial
+              ${this.open
+                ? html`<svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+                    ></path>
+                  </svg>`
+                : html`<svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                    ></path>
+                  </svg>`}
+            </button>
+          `
+        : ''} `;
   }
 
   private handleKeydown(e: KeyboardEvent) {

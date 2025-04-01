@@ -15,7 +15,7 @@ export class InitialSh extends LitElement {
     'initial.sh - Type "info"';
   @property({type: Boolean, reflect: false}) private sounds = false;
 
-  private readonly shell: Shell;
+  protected readonly shell: Shell;
   private readonly theInput = createRef();
   private audio: Audio | null = null;
 
@@ -40,14 +40,14 @@ export class InitialSh extends LitElement {
       // cursorInactiveStyle: 'outline',
     });
 
-    // this.promptSignAuth = colorize`${[this.user, ['yellow', 'bold']]}@${[
-    //   this.site,
-    //   ['red', 'bold'],
-    // ]} >> `;
     this.promptSign = colorize`${[this.site, ['red', 'bold']]} >> `;
-    // this.promptSign = colorize`${['red text', 'red']}`;
 
     this.shell.init();
+
+    this.shell.events.subscribe((event: Event) => {
+      console.log(event);
+      this.dispatchEvent(event);
+    });
   }
 
   override firstUpdated() {
@@ -64,14 +64,10 @@ export class InitialSh extends LitElement {
     }
   }
 
-  // inputElement(): HTMLInputElement | null {
-  //   return (this.renderRoot as DocumentFragment)
-  //     .getElementById('bottomInput')
-  //     ?.querySelector('input') as HTMLInputElement | null;
-  // }
-
   override disconnectedCallback() {
+    this.shell.events.unsubscribe();
     this.shell.clear();
+
     super.disconnectedCallback();
   }
 

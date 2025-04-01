@@ -20,13 +20,19 @@
   </head>
   <body>
     <h1>Non static - Press Help or click</h1>
-    <initial-console id="console1" sounds> </initial-console>
+    <initial-console id="console1" sounds open></initial-console>
 
     <p>
       <button onclick="document.getElementById('console1').show()">
         Launch initial
       </button>
     </p>
+    <script>
+      const initialConsole = document.getElementById('console1');
+      initialConsole.config = {
+        showDrop: true,
+      };
+    </script>
 
     <hr />
 
