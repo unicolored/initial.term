@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Initial Console & Shell Demo</title>
+    <!-- polyfills, probably for older browsers -->
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/lit/polyfill-support.js"></script>
+    <!-- load only initial-console, since it is the main element that loads the shell and everything -->
+    <script type="module" src="../console.js"></script>
+  </head>
+  <body>
+
+    <h1>initial-console static</h1>
+    <div class="my-console-container" style="background: blue; height: 333px">
+      <initial-console static> </initial-console>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 import {css} from 'lit';
 
-export const stylesSh = css`
+export const stylesShell = css`
   :host {
     --initial-text-color: white; /* Changes text color to blue */
     --initial-background-color: rgba(
@@ -34,13 +34,13 @@ export const stylesSh = css`
   p {
     margin: 0 0 4px 0;
   }
-  .console {
+  .initial-console-window {
     display: flex;
     overflow-y: auto;
     align-items: stretch;
     height: 100%;
   }
-  .terminal {
+  .initial-console-wrapper {
     margin: 15px;
     display: flex;
     flex-grow: 1;
@@ -52,7 +52,7 @@ export const stylesSh = css`
     color: #ffffff;
     margin-bottom: 10px;
   }
-  .shell {
+  .initial-console-shell {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -62,15 +62,15 @@ export const stylesSh = css`
     justify-content: end;
     font-size: 20px;
   }
-  .input-line {
+  .initial-console-input-line {
     display: flex;
     align-items: center;
     width: 100%;
   }
-  .prompt {
+  .initial-console-input-prompt {
     margin-right: 5px;
   }
-  input {
+  .initial-console-input-row input.initial-console-input-input {
     background: transparent;
     border: none;
     color: #00ff00;
@@ -81,7 +81,7 @@ export const stylesSh = css`
     padding: 4px;
     outline: none;
   }
-  input::placeholder {
+  .initial-console-input-row input.initial-console-input-input::placeholder {
     color: #008000;
     color: blue;
   }

@@ -1,29 +1,22 @@
 import {html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {createRef, Ref, ref} from 'lit/directives/ref.js';
-import {stylesSh} from './lib/styles/styles-sh';
-import {Shell} from './lib/shell';
-import {colorize} from './lib/core/helper';
+import {stylesShell} from './lib/styles/styles-shell';
+import {Shell} from 'initial-shell';
 import {Audio} from './lib/audio';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
-@customElement('initial-shell')
-export class InitialShell extends LitElement {
-  static override styles = stylesSh;
+@customElement('initial-terminal')
+export class Terminal extends LitElement {
+  static override styles = stylesShell;
 
-  @property({type: String, reflect: false}) private banner =
-    'initial.sh - Type "info"';
-  @property({type: Boolean, reflect: false}) private sounds = false;
+  @property({type: String}) private banner = 'initial.sh - Type "info"';
+  @property({type: Boolean}) private sounds = false;
 
   protected readonly shell: Shell;
   private readonly theInput: Ref<HTMLInputElement> = createRef();
   private audio: Audio | null = null;
 
-  private readonly site = window.location.hostname || 'unknown site';
-  // private readonly browser = getBrowserName();
-  private readonly promptSign!: string;
-
-  pluginCommands: Record<string, (terminal: InitialShell) => void> = {};
   private history: string[] = [];
   // private messages: string[] = [];
 
@@ -38,22 +31,23 @@ export class InitialShell extends LitElement {
   constructor() {
     super();
 
-    this.shell = new Shell({
-      banner: this.banner,
-      // cursorBlink: true,
-      // cursorInactiveStyle: 'outline',
-    });
-
-    this.promptSign = colorize`${[this.site, ['red', 'bold']]} >> `;
-
-    this.shell.init();
+    this.shell = new Shell({});
 
     this.shell.events.subscribe((event: Event) => {
       this.dispatchEvent(event);
     });
+
   }
 
   override firstUpdated() {
+    console.log('firstUpdated', this.banner)
+    this.shell.init({
+      banner: this.banner,
+    });
+
+    this.history = [...this.shell.history];
+    this.messages = [...this.shell.messages];
+
     if (this.sounds) {
       this.audio = new Audio();
     }
@@ -79,9 +73,9 @@ export class InitialShell extends LitElement {
     this.messages = [...this.shell.messages];
 
     return html`
-      <div class="console" @click=${this.handleClick}>
-        <div class="terminal">
-          <div class="shell">
+      <div class="initial-console-window" @click=${this.handleConsoleClick}>
+        <div class="initial-console-wrapper">
+          <div class="initial-console-shell">
             ${this.history.map((msg) => {
               return html`<p class=${msg.startsWith('Error') ? 'error' : ''}>
                 ${unsafeHTML(msg)}
@@ -91,11 +85,11 @@ export class InitialShell extends LitElement {
               return html`<p class="typed">${unsafeHTML(msg)}</p>`;
             })}
           </div>
-          <div class="input-line">
-            <span class="prompt">
-              ${html`${unsafeHTML(this.promptSign)}`}
+          <div class="initial-console-input-row">
+            <span class="initial-console-input-prompt">
+              ${html`${unsafeHTML(this.shell.promptSign)}`}
             </span>
-            <input
+            <input class="initial-console-input-input"
               ${ref(this.theInput)}
               @keydown=${this.handleInput}
               placeholder=""
@@ -119,7 +113,7 @@ export class InitialShell extends LitElement {
         return;
       }
 
-      this.shell.putMessage([`${this.promptSign} ${input}`]);
+      this.shell.putMessage([`${this.shell.promptSign} ${input}`]);
 
       await this.shell.processInput(input);
 
@@ -127,34 +121,10 @@ export class InitialShell extends LitElement {
     }
   }
 
-  private handleClick() {
+  private handleConsoleClick() {
     const input = this.theInput.value as HTMLInputElement;
     if (input) {
       input.focus();
     }
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'initial-shell': InitialShell;
-  }
-}
-
-declare global {
-  interface Window {
-    InitialIntShell: {
-      registerPlugin: (
-        name: string,
-        execute: (console: InitialShell) => void
-      ) => void;
-    };
-  }
-}
-
-window.InitialIntShell = {
-  registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-shell') as InitialShell;
-    if (console) console.pluginCommands[name] = execute;
-  },
-};

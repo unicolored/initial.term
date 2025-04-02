@@ -1,10 +1,10 @@
 {
-  "name": "initial-sh",
+  "name": "initial-term",
   "version": "0.8.4",
-  "description": "The Initial Console for webmasters",
-  "main": "initial-sh.bundled.js",
-  "module": "initial-sh.js",
-  "types": "initial-sh.d.ts",
+  "description": "The terminal for webmasters",
+  "main": "initial.bundled.js",
+  "module": "initial.js",
+  "types": "initial.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
     "docs:clean": "rimraf docs",
     "docs:gen": "eleventy --config=.eleventy.cjs",
     "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
-    "docs:build": "rollup -c --file docs/initial-sh.docs.js",
+    "docs:build": "rollup -c --file docs/initial.docs.js",
     "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
     "docs:serve": "wds --root-dir=docs --node-resolve --watch",
     "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
@@ -32,10 +32,11 @@
     "test:watch": "wtr --watch",
     "test:prod": "MODE=prod wtr",
     "test:prod:watch": "MODE=prod wtr --watch",
-    "checksize": "rollup -c ; cat initial-sh.bundled.js | gzip -9 | wc -c ; rm initial-sh.bundled.js"
+    "checksize": "rollup -c ; cat initial.bundled.js | gzip -9 | wc -c ; rm initial.bundled.js",
+    "start": "yarn build && concurrently \"yarn build:watch\" \"yarn serve\""
   },
   "dependencies": {
-    "@types/mocha": "^10.0.10",
+    "initial-shell": "^0.2.0",
     "lit": "^3.2.0",
     "rxjs": "^7.8.2"
   },
@@ -47,6 +48,7 @@
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/mocha": "^10.0.10",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "@web/dev-server": "^0.1.31",

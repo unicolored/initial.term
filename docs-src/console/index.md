@@ -18,7 +18,6 @@ To close the console: press Escape, or type **`exit`**.
 
 <script>
       const initialConsole = document.getElementById('console1');
-console.log(initialConsole)
       initialConsole.config = {
         showDrop: true,
       };

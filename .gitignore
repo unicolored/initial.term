@@ -10,3 +10,5 @@
 /initial-*.d.ts.map
 # only generated for size check
 /initial-sh.bundled.js
+/console-*
+/terminal-*

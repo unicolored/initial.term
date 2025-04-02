@@ -5,9 +5,9 @@ import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 
 export default {
-  input: 'initial-console.js',
+  input: 'console.js',
   output: {
-    file: 'initial-sh.js',
+    file: 'initial.js',
     format: 'esm',
   },
   onwarn(warning) {
