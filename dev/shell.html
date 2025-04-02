@@ -24,8 +24,8 @@
     import {Shell} from 'initial-shell';
 
     const initialTerminal = document.getElementById('terminal1');
-    const customShell = new Shell({})
-    customShell.config({banner: 'Star shell'})
+    const customShell = new Shell()
+    customShell.init({banner: 'Star shell'})
     initialTerminal.loadShell(customShell)
   </script>
   </body>
