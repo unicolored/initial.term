@@ -5802,9 +5802,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"initial-sh@workspace:.":
+"initial-shell@npm:^0.2.0":
+  version: 0.2.4
+  resolution: "initial-shell@npm:0.2.4"
+  checksum: 10c0/49814242d0fc69ae9cb49c16543cfd59cda04e305cc140beca156e235a010994b0076372f5416b4509f6f67516fb91a2114a367e865abbd8bc5a6490b3d9627a
+  languageName: node
+  linkType: hard
+
+"initial-term@workspace:.":
   version: 0.0.0-use.local
-  resolution: "initial-sh@workspace:."
+  resolution: "initial-term@workspace:."
   dependencies:
     "@11ty/eleventy": "npm:^3.0.0"
     "@11ty/eleventy-plugin-syntaxhighlight": "npm:^4.0.0"
@@ -5824,6 +5831,7 @@ __metadata:
     "@web/test-runner-playwright": "npm:^0.9.0"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
     eslint: "npm:^8.15.0"
+    initial-shell: "npm:^0.2.0"
     lit: "npm:^3.2.0"
     lit-analyzer: "npm:^1.2.1"
     postcss: "npm:^8.5.3"

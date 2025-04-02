@@ -2,33 +2,33 @@ import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 import {Audio} from './lib/audio';
-import './initial-shell';
+import './terminal';
 import {ConsoleConfig} from './lib/interface';
 import {createRef, Ref, ref} from 'lit/directives/ref.js';
-import {InitialShell} from './initial-shell';
+import {Terminal} from './terminal';
 
 @customElement('initial-console')
-export class InitialConsole extends LitElement {
+export class Console extends LitElement {
   static override styles = stylesConsole;
 
-  @property({type: Object}) config: ConsoleConfig = {
+  @property({type: Object}) config: Partial<ConsoleConfig> = {
     showDrop: false,
-    // Default values for other configuration options
   };
-  @property({type: String}) apiUrl = '';
   @property({type: Boolean, reflect: true}) private open = false;
-  @property({type: Boolean, reflect: true}) private static = false;
-  @property({type: Boolean, reflect: false}) private sounds = false;
-  pluginCommands: Record<string, (console: InitialConsole) => void> = {};
+  @property({type: String})
+  private banner = `initial.sh - Type "exit" to close`;
+  @property({type: Boolean}) private static = false;
+  @property({type: Boolean}) private sounds = false;
 
   private audio: Audio | null = null;
 
-  private shellElement: Ref<InitialShell> = createRef(); // This will hold the reference to the initial-sh element
+  private shellElement: Ref<Terminal> = createRef();
 
   constructor() {
     super();
-    // Add keyboard listener in constructor
+
     if (!this.static) {
+      // Add keyboard listener in constructor
       document.addEventListener('keyup', this.handleKeydown.bind(this));
     }
   }
@@ -36,6 +36,7 @@ export class InitialConsole extends LitElement {
   override disconnectedCallback() {
     // Clean up listener when element’s removed
     document.removeEventListener('keyup', this.handleKeydown.bind(this));
+
     super.disconnectedCallback();
   }
 
@@ -49,18 +50,18 @@ export class InitialConsole extends LitElement {
     }
 
     if (this.shellElement?.value) {
-      this.shellElement.value.addEventListener('callback:close', () => {
+      this.shellElement.value.addEventListener('console:close', () => {
         this.close();
       });
     }
   }
 
   override render() {
-    return html`<initial-shell
+    return html`<initial-terminal
         ${ref(this.shellElement)}
-        static
-        ?sounds=${this.sounds}
-      ></initial-shell>
+        banner=${this.banner}
+        sounds=${this.sounds}
+      ></initial-terminal>
       ${this.config.showDrop && !this.static
         ? html`
             <button @click=${() => (this.open ? this.close() : this.show())}>
@@ -93,7 +94,6 @@ export class InitialConsole extends LitElement {
 
   private handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Help' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
-      // Plain '2' key
       if (!this.open) {
         this.show();
       } else {
@@ -117,27 +117,3 @@ export class InitialConsole extends LitElement {
     }
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'initial-console': InitialConsole;
-  }
-}
-
-declare global {
-  interface Window {
-    InitialIntConsole: {
-      registerPlugin: (
-        name: string,
-        execute: (console: InitialConsole) => void
-      ) => void;
-    };
-  }
-}
-
-window.InitialIntConsole = {
-  registerPlugin: (name, execute) => {
-    const console = document.querySelector('initial-console') as InitialConsole;
-    if (console) console.pluginCommands[name] = execute;
-  },
-};
