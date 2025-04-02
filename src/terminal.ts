@@ -36,11 +36,10 @@ export class Terminal extends LitElement {
     this.shell.events.subscribe((event: Event) => {
       this.dispatchEvent(event);
     });
-
   }
 
   override firstUpdated() {
-    console.log('firstUpdated', this.banner)
+    console.log('firstUpdated', this.banner);
     this.shell.init({
       banner: this.banner,
     });
@@ -89,7 +88,8 @@ export class Terminal extends LitElement {
             <span class="initial-console-input-prompt">
               ${html`${unsafeHTML(this.shell.promptSign)}`}
             </span>
-            <input class="initial-console-input-input"
+            <input
+              class="initial-console-input-input"
               ${ref(this.theInput)}
               @keydown=${this.handleInput}
               placeholder=""

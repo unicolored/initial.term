@@ -15,7 +15,8 @@ export class Console extends LitElement {
     showDrop: false,
   };
   @property({type: Boolean, reflect: true}) private open = false;
-  @property({type: String}) private banner = `initial.sh - Type "exit" to close`;
+  @property({type: String})
+  private banner = `initial.sh - Type "exit" to close`;
   @property({type: Boolean}) private static = false;
   @property({type: Boolean}) private sounds = false;
 
