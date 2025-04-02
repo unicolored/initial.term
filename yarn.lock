@@ -5802,10 +5802,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"initial-shell@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "initial-shell@npm:0.3.2"
-  checksum: 10c0/7e3061218710a8a24105dd4c94ff4db47e3c99d9590bb2f6dd5a6c83455e22bd4cfe68489cc676845463e3244b479555c56dd0435d496899e345510c5b3f128e
+"initial-shell@npm:^0.3.7":
+  version: 0.3.7
+  resolution: "initial-shell@npm:0.3.7"
+  checksum: 10c0/8af9710426d263f8337c65a374be10cc20605a17a531c3e83bc15dc9d47acd2f02c4527b76cc3bdf9e0a3fb366508c125e7071ee6be293517982dd86d4bc8f0f
   languageName: node
   linkType: hard
 
@@ -5831,7 +5831,7 @@ __metadata:
     "@web/test-runner-playwright": "npm:^0.9.0"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
     eslint: "npm:^8.15.0"
-    initial-shell: "npm:^0.3.2"
+    initial-shell: "npm:^0.3.7"
     lit: "npm:^3.2.0"
     lit-analyzer: "npm:^1.2.1"
     postcss: "npm:^8.5.3"
