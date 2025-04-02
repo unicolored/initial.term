@@ -84,7 +84,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/unicolored/initial.term.git"
+    "url": "git+https://github.com/unicolored/initial.term.git"
   },
   "customElements": "custom-elements.json",
   "packageManager": "yarn@4.8.1"
