@@ -2,7 +2,7 @@
   "name": "initial-term",
   "version": "0.8.6",
   "description": "The terminal for webmasters",
-  "main": "initial.bundled.js",
+  "main": "initial.js",
   "module": "initial.js",
   "types": "initial.d.ts",
   "type": "module",
@@ -36,9 +36,7 @@
     "start": "yarn build && concurrently \"yarn build:watch\" \"yarn serve\""
   },
   "dependencies": {
-    "initial-shell": "^0.2.0",
-    "lit": "^3.2.0",
-    "rxjs": "^7.8.2"
+    "initial-shell": "^0.3.2"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
@@ -59,6 +57,7 @@
     "@web/test-runner-playwright": "^0.9.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "eslint": "^8.15.0",
+    "lit": "^3.2.0",
     "lit-analyzer": "^1.2.1",
     "postcss": "^8.5.3",
     "prettier": "^2.6.2",
@@ -67,6 +66,7 @@
     "rollup-plugin-minify-html-literals": "^1.2.6",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-summary": "^2.0.1",
+    "rxjs": "^7.8.2",
     "typescript": "~5.5.0"
   },
   "keywords": [

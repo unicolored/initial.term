@@ -13,10 +13,20 @@
     <h1>initial-terminal</h1>
     <div class="my-console-container" style="background: green; height: 333px">
       <initial-terminal
+        id="terminal1"
         banner="Shello 👋"
         style="--initial-background-color: rgba(0, 0, 0, 0.8)"
       >
       </initial-terminal>
     </div>
+
+  <script type="module">
+    import {Shell} from 'initial-shell';
+
+    const initialTerminal = document.getElementById('terminal1');
+    const customShell = new Shell({})
+    customShell.config({banner: 'Star shell'})
+    initialTerminal.loadShell(customShell)
+  </script>
   </body>
 </html>
