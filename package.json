@@ -1,6 +1,6 @@
 {
   "name": "initial-term",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "The terminal for webmasters",
   "main": "initial.bundled.js",
   "module": "initial.js",
@@ -84,7 +84,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/unicolored/initial.term.git"
+    "url": "git+https://github.com/unicolored/initial.term.git"
   },
   "customElements": "custom-elements.json",
   "packageManager": "yarn@4.8.1"
