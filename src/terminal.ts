@@ -40,7 +40,7 @@ export class Terminal extends LitElement {
 
   loadShell(shell: Shell) {
     this.shell = shell;
-    this.requestUpdate()
+    this.requestUpdate();
   }
 
   override firstUpdated() {

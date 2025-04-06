@@ -89,5 +89,4 @@ export const stylesShell = css`
     color: #ff4040;
     color: red;
   }
-
 `;
