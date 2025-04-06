@@ -13,7 +13,7 @@ export class Terminal extends LitElement {
   @property({type: String}) private banner = 'initial.sh - Type "info"';
   @property({type: Boolean}) private sounds = false;
 
-  protected readonly shell: Shell;
+  protected shell: Shell;
   private readonly theInput: Ref<HTMLInputElement> = createRef();
   private audio: Audio | null = null;
 
@@ -31,11 +31,16 @@ export class Terminal extends LitElement {
   constructor() {
     super();
 
-    this.shell = new Shell({});
+    this.shell = new Shell();
 
     this.shell.events.subscribe((event: Event) => {
       this.dispatchEvent(event);
     });
+  }
+
+  loadShell(shell: Shell) {
+    this.shell = shell;
+    this.requestUpdate();
   }
 
   override firstUpdated() {
