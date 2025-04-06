@@ -7,6 +7,10 @@
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
     <!-- load only initial-console, since it is the main element that loads the shell and everything -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/initial-shell/shell.css"
+      rel="stylesheet"
+    />
     <script type="module" src="../console.js"></script>
   </head>
   <body>
@@ -20,13 +24,13 @@
       </initial-terminal>
     </div>
 
-  <script type="module">
-    import {Shell} from 'initial-shell';
+    <script type="module">
+      import {Shell} from 'initial-shell';
 
-    const initialTerminal = document.getElementById('terminal1');
-    const customShell = new Shell()
-    customShell.init({banner: 'Star shell'})
-    initialTerminal.loadShell(customShell)
-  </script>
+      const initialTerminal = document.getElementById('terminal1');
+      const customShell = new Shell();
+      customShell.init({banner: 'Star shell'});
+      initialTerminal.loadShell(customShell);
+    </script>
   </body>
 </html>

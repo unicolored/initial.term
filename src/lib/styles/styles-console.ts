@@ -16,11 +16,11 @@ export const stylesConsole = css`
     border-bottom: 1px solid transparent;
     box-shadow: 0 4px 48px transparent;
     position: fixed;
-    top: -50%;
+    top: -100%;
     left: 0;
     width: 100%;
     height: 50vh;
-    transition: top 0.3s ease-in-out;
+    transition: top 0.1s ease-in-out;
     z-index: 10000;
     display: block;
     box-sizing: border-box;
