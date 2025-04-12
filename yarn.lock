@@ -3515,9 +3515,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001688":
-  version: 1.0.30001712
-  resolution: "caniuse-lite@npm:1.0.30001712"
-  checksum: 10c0/b3df8bdcc3335969380c2e47acb36c89bfc7f8fb4ef7ee2a5380e30ba46aa69e9d411654bc29894a06c201a1d60d490ab9b92787f3b66d7a7a38d71360e68215
+  version: 1.0.30001713
+  resolution: "caniuse-lite@npm:1.0.30001713"
+  checksum: 10c0/f5468abfe73ce30e29cc8bde2ea67df2aab69032bdd93345e0640efefb76b7901c84fe1d28d591a797e65fe52fc24cae97060bb5552f9f9740322aff95ce2f9d
   languageName: node
   linkType: hard
 
@@ -5802,10 +5802,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"initial-shell@npm:^0.3.7":
-  version: 0.3.7
-  resolution: "initial-shell@npm:0.3.7"
-  checksum: 10c0/8af9710426d263f8337c65a374be10cc20605a17a531c3e83bc15dc9d47acd2f02c4527b76cc3bdf9e0a3fb366508c125e7071ee6be293517982dd86d4bc8f0f
+"initial-shell@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "initial-shell@npm:0.4.0"
+  checksum: 10c0/be76b5f1a82db86ee00ab117dbe893a56de0efcc69373a38c2a4ba87cef9eae4b9c15082d159df6bf7815fb6a36336bd0dd6d2a92367e4a4b13714d5beb37d2c
   languageName: node
   linkType: hard
 
@@ -5831,7 +5831,7 @@ __metadata:
     "@web/test-runner-playwright": "npm:^0.9.0"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
     eslint: "npm:^8.15.0"
-    initial-shell: "npm:^0.3.7"
+    initial-shell: "npm:^0.4.0"
     lit: "npm:^3.2.0"
     lit-analyzer: "npm:^1.2.1"
     postcss: "npm:^8.5.3"

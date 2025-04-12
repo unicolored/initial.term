@@ -1,4 +1,5 @@
 import {LitElement, html} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
 import {customElement, property} from 'lit/decorators.js';
 import {stylesConsole} from './lib/styles/styles-console.js';
 import {Audio} from './lib/audio';
@@ -57,6 +58,8 @@ export class Console extends LitElement {
   }
 
   override render() {
+    const classes = {opened: this.open};
+
     return html`<initial-terminal
         ${ref(this.shellElement)}
         banner=${this.banner}
@@ -64,29 +67,11 @@ export class Console extends LitElement {
       ></initial-terminal>
       ${this.config.showDrop && !this.static
         ? html`
-            <button @click=${() => (this.open ? this.close() : this.show())}>
+            <button
+              @click=${() => (this.open ? this.close() : this.show())}
+              class=${classMap(classes)}
+            >
               initial
-              ${this.open
-                ? html`<svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
-                    ></path>
-                  </svg>`
-                : html`<svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                    ></path>
-                  </svg>`}
             </button>
           `
         : ''} `;
