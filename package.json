@@ -1,6 +1,6 @@
 {
   "name": "initial-term",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "The terminal for webmasters",
   "main": "initial.js",
   "module": "initial.js",
