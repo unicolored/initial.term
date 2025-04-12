@@ -33,7 +33,7 @@ To close the console: press Escape, or type **`exit`**.
 
   <script
     type="module"
-    src="https://cdn.jsdelivr.net/npm/initial-sh/initial-sh.bundled.js"
+    src="https://cdn.jsdelivr.net/npm/initial-term/initial.js"
   ></script>
 
   <script>
