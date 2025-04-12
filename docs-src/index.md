@@ -1,6 +1,6 @@
 ---
 layout: page.11ty.cjs
-title: initial-sh ⌲ Home
+title: Initial::shell
 ---
 
 # Initial Shell
