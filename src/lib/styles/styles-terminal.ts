@@ -2,7 +2,7 @@ import {css} from 'lit';
 
 export const stylesTerminal = css`
   :host {
-    --initial-text-color: white; /* Changes text color to blue */
+    --initial-text-color: white; /* Changes text color to white */
     --initial-background-color: rgba(
       0,
       0,
@@ -14,8 +14,8 @@ export const stylesTerminal = css`
   }
 
   :host {
-    color: var(--initial-text-color, black);
-    background: var(--initial-background-color, white);
+    color: var(--initial-text-color, white);
+    background: var(--initial-background-color, black);
     position: fixed;
     top: -100%;
     left: 0;
@@ -44,7 +44,7 @@ export const stylesTerminal = css`
     flex-grow: 1;
     flex-direction: column;
     font-family: var(--initial-font-family, 'Courier New, monospace');
-    color: var(--initial-text-color, black);
+    color: var(--initial-text-color, white);
   }
   .banner {
     color: #ffffff;
@@ -67,6 +67,10 @@ export const stylesTerminal = css`
     margin: 0 0 4px 0;
     display: inline-block;
     word-break: break-all;
+  }
+  .initial-console-shell p,
+  .initial-console-shell p a {
+    color: var(--initial-text-color, white);
   }
   .initial-console-shell p span {
     margin: 0;
