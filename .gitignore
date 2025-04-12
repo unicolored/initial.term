@@ -4,6 +4,7 @@
 /test/
 /custom-elements.json
 # top level source
+/initial.js
 /initial-*.js
 /initial-*.js.map
 /initial-*.d.ts
