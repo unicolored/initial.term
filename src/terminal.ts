@@ -1,14 +1,15 @@
 import {html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {createRef, Ref, ref} from 'lit/directives/ref.js';
+import {stylesTerminal} from './lib/styles/styles-terminal';
 import {stylesShell} from './lib/styles/styles-shell';
-import {Shell} from 'initial-shell';
 import {Audio} from './lib/audio';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {Shell} from 'initial-shell';
 
 @customElement('initial-terminal')
 export class Terminal extends LitElement {
-  static override styles = stylesShell;
+  static override styles = [stylesShell, stylesTerminal];
 
   @property({type: String}) private banner = 'initial.sh - Type "info"';
   @property({type: Boolean}) private sounds = false;
@@ -75,6 +76,7 @@ export class Terminal extends LitElement {
   override render() {
     this.history = [...this.shell.history];
     this.messages = [...this.shell.messages];
+    console.log(this.shell.promptSign);
 
     return html`
       <div class="initial-console-window" @click=${this.handleConsoleClick}>
@@ -90,9 +92,9 @@ export class Terminal extends LitElement {
             })}
           </div>
           <div class="initial-console-input-row">
-            <span class="initial-console-input-prompt">
-              ${html`${unsafeHTML(this.shell.promptSign)}`}
-            </span>
+            <div class="initial-console-input-prompt">
+              ${html`${unsafeHTML(this.shell.promptSign.replace('\r', ' '))}`}
+            </div>
             <input
               class="initial-console-input-input"
               ${ref(this.theInput)}
@@ -118,7 +120,9 @@ export class Terminal extends LitElement {
         return;
       }
 
-      this.shell.putMessage([`${this.shell.promptSign} ${input}`]);
+      console.log('⭐️ add msg', this.shell.promptSign);
+
+      this.shell.putMessage([`${this.shell.promptSign.trim()} ${input}`]);
 
       await this.shell.processInput(input);
 
