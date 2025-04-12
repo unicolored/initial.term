@@ -44,7 +44,7 @@ export const stylesConsole = css`
     top: 0;
     border-bottom: 1px solid #888;
     box-shadow: 0 4px 48px #555;
-    display:block;
+    display: block;
   }
   :host([static]) {
     border-bottom: 1px inner solid transparent;
@@ -55,7 +55,7 @@ export const stylesConsole = css`
     height: 100%;
     display: block;
     overflow-y: auto;
-    display:block;
+    display: block;
   }
   button {
     font-style: normal;
