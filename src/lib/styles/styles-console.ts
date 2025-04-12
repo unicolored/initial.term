@@ -16,7 +16,7 @@ export const stylesConsole = css`
     border-bottom: 1px solid transparent;
     box-shadow: 0 4px 48px transparent;
     position: fixed;
-    top: -100%;
+    top: -50%;
     left: 0;
     width: 100%;
     height: 50vh;
@@ -54,5 +54,11 @@ export const stylesConsole = css`
     height: 100%;
     display: block;
     overflow-y: auto;
+  }
+  button {
+    font-style: normal;
+  }
+  button.opened {
+    font-style: italic;
   }
 `;
