@@ -11,7 +11,7 @@ import {Shell} from 'initial-shell';
 export class Terminal extends LitElement {
   static override styles = [stylesShell, stylesTerminal];
 
-  @property({type: String}) private banner = 'initial.sh - Type "info"';
+  @property({type: String}) private banner!: string;
   @property({type: Boolean}) private sounds = false;
 
   protected shell: Shell;
@@ -32,20 +32,21 @@ export class Terminal extends LitElement {
   constructor() {
     super();
 
-    this.shell = new Shell();
+    this.shell = this.loadShell(new Shell());
 
     this.shell.events.subscribe((event: Event) => {
       this.dispatchEvent(event);
     });
   }
 
-  loadShell(shell: Shell) {
+  loadShell(shell: Shell): Shell {
     this.shell = shell;
     this.requestUpdate();
+
+    return this.shell;
   }
 
   override firstUpdated() {
-    console.log('firstUpdated', this.banner);
     this.shell.init({
       banner: this.banner,
     });
@@ -101,6 +102,11 @@ export class Terminal extends LitElement {
               @keydown=${this.handleInput}
               placeholder=""
               autofocus
+              autocomplete="off"
+              data-1p-ignore
+              data-lpignore="true"
+              data-form-type="other"
+              data-bwignore
             />
           </div>
         </div>
