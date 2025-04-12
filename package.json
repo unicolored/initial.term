@@ -36,7 +36,7 @@
     "start": "yarn build && concurrently \"yarn build:watch\" \"yarn serve\""
   },
   "dependencies": {
-    "initial-shell": "^0.4.0"
+    "initial-shell": "^0.5.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
